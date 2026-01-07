@@ -1,0 +1,149 @@
+.dr-auth {
+  min-height: 100vh;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 180, 216, 0.18), transparent 55%),
+              radial-gradient(900px 700px at 80% 20%, rgba(255, 183, 3, 0.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+  color: #e9eefc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 52px 16px;
+}
+
+.dr-auth-shell {
+  width: 100%;
+}
+
+.dr-auth-card {
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 26px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+  animation: drAuthBreathe 6s ease-in-out infinite;
+}
+
+@keyframes drAuthBreathe {
+  0%, 100% { opacity: 0.94; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35); }
+  50% { opacity: 1; box-shadow: 0 18px 52px rgba(0, 0, 0, 0.45); }
+}
+
+.dr-auth-logo {
+  width: 170px;
+  height: auto;
+  display: inline-block;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  animation: drAuthLogoIn 900ms ease-out 120ms forwards;
+  filter:
+    drop-shadow(0 16px 28px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 22px rgba(0, 180, 216, 0.22))
+    drop-shadow(0 0 18px rgba(255, 183, 3, 0.18));
+}
+
+@keyframes drAuthLogoIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.dr-auth-title {
+  margin-top: 6px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #f7f9ff;
+}
+
+.dr-auth-card label {
+  color: rgba(233, 238, 252, 0.85);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.dr-auth-input.form-control {
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(233, 238, 252, 0.95);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.dr-auth-input.form-control:focus {
+  background: rgba(10, 15, 26, 0.40);
+  border-color: rgba(0, 180, 216, 0.45);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.16);
+  color: rgba(233, 238, 252, 0.98);
+}
+
+.dr-auth-alert.alert {
+  border-radius: 12px;
+}
+
+.dr-auth-btn.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffd166, #ff7a59);
+  color: #121826;
+}
+
+.dr-auth-btn.btn:hover {
+  filter: brightness(1.03);
+}
+
+.dr-auth-foot {
+  color: rgba(233, 238, 252, 0.78);
+}
+
+.dr-auth-legal {
+  font-size: 12px;
+  line-height: 1.55;
+  color: rgba(233, 238, 252, 0.70);
+}
+
+.dr-auth-card a {
+  color: rgba(255, 209, 102, 0.95);
+  text-decoration: none;
+}
+
+.dr-auth-card a:hover {
+  text-decoration: underline;
+}
+
+.dr-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 209, 102, 0.95);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+}
+
+.dr-link:hover {
+  filter: brightness(1.05);
+}
+
+@media (max-width: 576px) {
+  .dr-auth-card {
+    padding: 22px 18px;
+  }
+
+  .dr-auth-logo {
+    width: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dr-auth-card,
+  .dr-auth-logo {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

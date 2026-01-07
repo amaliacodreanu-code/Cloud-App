@@ -1,0 +1,245 @@
+.dr-landing {
+  min-height: 100vh;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 180, 216, 0.18), transparent 55%),
+              radial-gradient(900px 700px at 80% 20%, rgba(255, 183, 3, 0.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+  color: #e9eefc;
+}
+
+.dr-shell {
+  position: relative;
+  min-height: 100vh;
+  padding: 64px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dr-hero {
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+  padding: 36px 28px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(10px);
+}
+
+.dr-fade-up {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: drFadeUp 700ms ease-out 60ms forwards;
+}
+
+@keyframes drFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dr-logo {
+  width: 200px;
+  height: auto;
+  margin-bottom: 16px;
+  transform-origin: center;
+}
+
+.dr-logo-fade {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.98);
+  animation: drLogoIn 900ms ease-out 120ms forwards;
+  filter:
+    drop-shadow(0 16px 28px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 22px rgba(0, 180, 216, 0.22))
+    drop-shadow(0 0 18px rgba(255, 183, 3, 0.18));
+}
+
+@keyframes drLogoIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dr-title {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: #f7f9ff;
+}
+
+.dr-subtitle {
+  margin: 16px auto 0;
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(233, 238, 252, 0.85);
+}
+
+.dr-actions {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.dr-btn {
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  font-weight: 600 !important;
+  border: 0 !important;
+}
+
+.dr-btn-primary {
+  background: linear-gradient(135deg, #ffd166, #ff7a59) !important;
+  color: #121826 !important;
+}
+
+.dr-btn-primary:hover {
+  filter: brightness(1.03);
+}
+
+.dr-btn-secondary {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #f7f9ff !important;
+}
+
+.dr-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+.dr-credits {
+  position: absolute;
+  right: 0px;
+  bottom: 8px;
+  width: 250px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.dr-credits-anim {
+  opacity: 0;
+  transform: translateX(18px);
+  animation: drCreditsIn 650ms ease-out 420ms forwards;
+}
+
+@keyframes drCreditsIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dr-credits:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.dr-credits-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(233, 238, 252, 0.75);
+  margin-bottom: 10px;
+}
+
+.dr-credits-list {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dr-credits-item {
+  background: rgba(10, 15, 26, 0.25) !important;
+  color: rgba(233, 238, 252, 0.92) !important;
+  border: 0 !important;
+  padding: 10px 12px !important;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.dr-credits-item + .dr-credits-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.dr-credits-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .dr-title {
+    font-size: 42px;
+  }
+
+  .dr-logo {
+    width: 300px;
+  }
+
+  .dr-credits {
+    position: static;
+    width: 100%;
+    max-width: 420px;
+    margin: 18px auto 0;
+  }
+
+  .dr-shell {
+    padding: 42px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dr-logo-fade,
+  .dr-fade-up,
+  .dr-credits-anim {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .dr-credits:hover,
+  .dr-credits-item:hover {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+.dr-credits {
+  animation: drBreathe 4.5s ease-in-out infinite;
+}
+
+.dr-credits {
+  animation: drBreatheFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes drBreatheFloat {
+  0%, 100% { opacity: 0.75; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
+.dr-hero {
+  animation: drHeroBreathe 6s ease-in-out infinite;
+}
+
+@keyframes drHeroBreathe {
+  0%, 100% {
+    opacity: 0.92;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 18px 52px rgba(0, 0, 0, 0.45);
+  }
+}
+
+.dr-hero:hover {
+  transform: translateY(-2px);
+  transition: transform 200ms ease;
+}
+

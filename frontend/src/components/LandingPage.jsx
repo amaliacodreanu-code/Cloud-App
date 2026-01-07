@@ -1,40 +1,46 @@
 import { Button, Container } from "react-bootstrap";
-import logo from "../images/logo.png";
 import { ListGroup } from "react-bootstrap";
+import logo from "../images/logo.png";
+import "../styles/LandingPage.css";
 
 export default function LandingPage() {
-    const names = ["Robert Vulpe", "Mircea Popa", "Ionuț Bîrjovanu", "Dragoș Enăchescu"];
+  const names = ["Codreanu Amalia", "Enachescu Dragos", "Calcan Cristian"];
 
-    return (
-        <Container style={{ textAlign: "center", backgroundColor: "white", height: "100vh" }}>
-            <div
-                className="d-flex justify-content-center align-items-center flex-column"
-                style={{ padding: "2rem" }}
-            >
-                <img src={logo} alt="logo" style={{ width: "128px" }} />
+  return (
+    <div className="dr-landing">
+      <Container className="dr-shell">
+        <header className="dr-hero dr-fade-up">
+          <img className="dr-logo dr-logo-fade" src={logo} alt="DrinksReview logo" />
 
-                <h1>Beer Review</h1>
-                <p>Discover and review beers</p>
-                <p>
-                    A project by:
-                </p>
+          <h1 className="dr-title">DrinksReview</h1>
 
-                <ListGroup>
-                    {names.map((name, index) => (
-                        <ListGroup.Item key={index}>{name}</ListGroup.Item>
-                    ))}
-                </ListGroup>
-            </div>
+          <p className="dr-subtitle">
+            Platforma DrinksReview îi ajută pe pasionații de băuturi să descopere sortimente noi și să își
+            organizeze preferințele. Utilizatorii pot citi și publica recenzii, pot compara băuturi după arome
+            și caracteristici și pot salva recomandări pentru următoarea încercare.
+          </p>
 
-            <hr style={{ margin: "1rem 0" }} />
-            <p>Get started by logging in or registering</p>
-
-            <Button variant="secondary" href="/login" style={{ marginRight: "1rem" }}>
-                Login
+          <div className="dr-actions">
+            <Button className="dr-btn dr-btn-secondary" href="/login">
+              Login
             </Button>
-            <Button variant="primary" href="/register">
-                Register
+            <Button className="dr-btn dr-btn-primary" href="/register">
+              Register
             </Button>
-        </Container>
-    );
+          </div>
+        </header>
+
+        <aside className="dr-credits dr-credits-anim">
+          <div className="dr-credits-title">Proiect realizat de :</div>
+          <ListGroup className="dr-credits-list">
+            {names.map((name, idx) => (
+              <ListGroup.Item className="dr-credits-item" key={idx}>
+                {name}
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </aside>
+      </Container>
+    </div>
+  );
 }

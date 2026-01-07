@@ -1,0 +1,10 @@
+# Virtual environment
+.venv/
+
+# Byte-compiled / optimized files
+__pycache__/
+
+*.pyc
+*.log
+*.env
+.vscode

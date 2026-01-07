@@ -1,0 +1,50 @@
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.search-bar {
+    width: 22rem;
+}
+
+.search-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1rem;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.star-empty {
+    color: #6c757d;
+}
+
+.star-full {
+    color: #ffd700;
+}
+
+.taste-badge {
+    background-color: #ccc;
+    margin-right: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.taste-badge.selected {
+    transform: scale(1.1);
+}

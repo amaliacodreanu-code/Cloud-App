@@ -1,0 +1,90 @@
+services:
+  guardian:
+    build: ../auth
+    container_name: guardian-auth
+    environment:
+      SECRET_KEY_FILE: "/app/secret_key.txt"
+      DB_URL_FILE: "/app/secret_key.txt"
+      JWT_SECRET_KEY: "core_app_secure_token_z77"
+      DB_API_URL: "http://data-layer-api:5000"
+    volumes:
+      - ../auth/secret_key.txt:/app/secret_key.txt
+    depends_on:
+      - data-layer
+
+  core-engine:
+    build: ../backend
+    container_name: core-engine-svc
+    environment:
+      SECRET_KEY_FILE: "/app/secret_key.txt"
+      DB_URL_FILE: "/app/secret_key.txt"
+      JWT_SECRET_KEY: "core_app_secure_token_z77"
+      DB_API_URL: "http://data-layer-api:5000"
+    volumes:
+      - ../backend/secret_key.txt:/app/secret_key.txt
+    depends_on:
+      - data-layer
+  
+  client-portal:
+    build: ../frontend
+    container_name: client-portal-ui
+    environment:
+      VITE_API_URL: "http://localhost:8080/api"
+      VITE_AUTH_URL: "http://localhost:8080/auth"
+    ports:
+      - "5173:80"
+    depends_on:
+      - guardian
+      - core-engine
+    
+  data-layer:
+    build: ../database
+    container_name: data-layer-api
+    environment:
+      MONGODB_HOST: "mongodb://admin_user:secure_pass_2026@mongo_db-service:27017/admin?authSource=admin"
+    depends_on:
+      - mongo_db
+
+  mongo_db:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongo_db-service
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin_user
+      MONGO_INITDB_ROOT_PASSWORD: secure_pass_2026
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express-service
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin_user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: secure_pass_2026
+      ME_CONFIG_MONGODB_URL: "mongodb://admin_user:secure_pass_2026@mongo_db-service:27017/"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo_db
+      
+  kong:
+    image: kong:latest
+    container_name: kong
+    ports:
+      - "8080:8000"
+      - "8001:8001"
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: "/usr/local/kong/declarative/kong.yaml"
+      KONG_PROXY_ACCESS_LOG: "/dev/stdout"
+      KONG_ADMIN_ACCESS_LOG: "/dev/stdout"
+      KONG_PROXY_ERROR_LOG: "/dev/stderr"
+      KONG_ADMIN_ERROR_LOG: "/dev/stderr"
+      KONG_ADMIN_LISTEN: "0.0.0.0:8001, 0.0.0.0:8444 ssl"
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+
+volumes:
+  mongo-data:

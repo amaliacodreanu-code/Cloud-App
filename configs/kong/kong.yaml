@@ -1,0 +1,34 @@
+_format_version: "3.0"
+
+services:
+  - name: backend
+    url: http://core-engine:5000
+    routes:
+      - name: backend-service-route
+        paths: 
+          - /api
+
+  - name: auth
+    url: http://guardian:5000
+    routes:
+      - name: auth-service-route
+        paths:
+          - /auth
+
+plugins:
+  - name: cors
+    service: backend
+    config:
+      origins:
+        - "*"
+      methods:
+        - GET
+        - POST
+        - DELETE
+  - name: cors
+    service: auth
+    config:
+      origins: 
+        - "*"
+      methods:
+        - POST

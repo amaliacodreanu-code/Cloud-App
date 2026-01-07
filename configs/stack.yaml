@@ -1,0 +1,186 @@
+version: '3.9'
+
+services:
+  auth-service:
+    image: registry.gitlab.com/idp9402113/authservice:master
+    environment:
+      JWT_SECRET_KEY_FILE: /run/secrets/jwt_secret_key
+      DB_API_URL: http://database-service:5000
+    secrets:
+      - jwt_secret_key
+    deploy:
+      replicas: 2
+    networks:
+      - internal
+      - db-auth-service
+    depends_on:
+      - database-service
+
+  backend-service:
+    image: registry.gitlab.com/idp9402113/backend:master
+    environment:
+      DB_API_URL: http://database-service:5000
+      JWT_SECRET_KEY_FILE: /run/secrets/jwt_secret_key
+      OPENAI_API_KEY_FILE: /run/secrets/openai_api_key
+    secrets:
+      - jwt_secret_key
+      - openai_api_key
+    deploy:
+      replicas: 2
+    networks:
+      - internal
+      - db-api-service
+    depends_on:
+      - database-service
+
+  frontend-service:
+    image: registry.gitlab.com/idp9402113/frontend:master
+    environment:
+      API_URL: http://127.0.0.1:8080/api
+      AUTH_URL: http://127.0.0.1:8080/auth
+    ports:
+      - "5173:80"
+    deploy:
+      replicas: 2
+
+  database-service:
+    image: registry.gitlab.com/idp9402113/database:master
+    environment:
+      MONGODB_HOST: mongodb://root:example@mongo:27017/beerreview?authSource=admin
+    deploy:
+      replicas: 2
+    networks:
+      - database
+      - db-api-service
+      - db-auth-service
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - database
+
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: "mongodb://root:example@mongo:27017"
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - database
+    depends_on:
+      - mongo
+
+  kong:
+    image: kong:latest
+    ports:
+      - "80:8000" # Proxy port
+      - "8001:8001" # Admin API port
+    environment:
+      KONG_DATABASE: 'off'
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yaml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - internal
+
+  agent:
+    image: portainer/agent:2.11.1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    networks:
+      - agent_network
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.platform.os == linux]
+
+  portainer:
+    image: portainer/portainer-ce:2.11.1
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    ports:
+      - "9443:9443"
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - portainer_data:/data
+    networks:
+      - agent_network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - monitoring
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+  node_exporter:
+    image: prom/node-exporter
+    deploy:
+      mode: global
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - --path.procfs=/host/proc
+      - --path.sysfs=/host/sys
+      - --path.rootfs=/rootfs
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - 9100:9100
+    networks:
+      - monitoring
+
+volumes:
+  mongo-data:
+  portainer_data:
+
+networks:
+  internal:
+  database:
+  db-api-service:
+  db-auth-service:
+  monitoring:
+  agent_network:
+    driver: overlay
+    attachable: true
+
+secrets:
+  jwt_secret_key:
+    external: true
+  openai_api_key:
+    external: true

@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from schemas import user_schema, review_schema
+from pymongo import ASCENDING, DESCENDING
 
 load_dotenv()
 
@@ -200,6 +201,103 @@ def user_exists():
         return jsonify({"message": "Invalid username or password"}), 401
 
     return jsonify({"message": "User exists"}), 200
+
+
+
+@app.route("/top-rated", methods=["GET"])
+def top_rated():
+    page = int(request.args.get("page", 1))
+    per_page = int(request.args.get("per_page", 10))
+    min_reviews = int(request.args.get("min_reviews", 1))
+    sort = request.args.get("sort", "avg")  # "avg" | "count"
+    skip = (page - 1) * per_page
+
+    # sort key
+    if sort == "count":
+        sort_stage = {"$sort": {"review_count": -1, "avg_rating": -1}}
+    else:
+        sort_stage = {"$sort": {"avg_rating": -1, "review_count": -1}}
+
+    pipeline = [
+        # group reviews by drink_id
+        {
+            "$group": {
+                "_id": "$drink_id",
+                "avg_rating": {"$avg": "$rating"},
+                "review_count": {"$sum": 1},
+            }
+        },
+        # keep only drinks with enough reviews
+        {"$match": {"review_count": {"$gte": min_reviews}}},
+        sort_stage,
+        {"$skip": skip},
+        {"$limit": per_page},
+
+        # join drinks
+        {
+            "$lookup": {
+                "from": "drinks",
+                "localField": "_id",
+                "foreignField": "id",
+                "as": "drink",
+            }
+        },
+        {"$unwind": {"path": "$drink", "preserveNullAndEmptyArrays": True}},
+
+        # join producers
+        {
+            "$lookup": {
+                "from": "producers",
+                "localField": "drink.producerId",
+                "foreignField": "id",
+                "as": "producer",
+            }
+        },
+        {"$unwind": {"path": "$producer", "preserveNullAndEmptyArrays": True}},
+
+        # project clean JSON (NO ObjectId)
+        {
+            "$project": {
+                "_id": 0,
+                "drink_id": "$_id",
+                "avg_rating": 1,
+                "review_count": 1,
+
+                "drink": {
+                    "id": "$drink.id",
+                    "name": "$drink.name",
+                    "category": "$drink.category",
+                    "abv": "$drink.abv",
+                    "description": "$drink.description",
+                    "producerId": "$drink.producerId",
+                },
+
+                "producer": {
+                    "id": "$producer.id",
+                    "name": "$producer.name",
+                    "type": "$producer.type",
+                    "city": "$producer.city",
+                    "country": "$producer.country",
+                },
+            }
+        },
+    ]
+
+    try:
+        data = list(reviews_collection.aggregate(pipeline))
+
+        # round avg_rating safely
+        for r in data:
+            if isinstance(r.get("avg_rating"), (int, float)):
+                r["avg_rating"] = round(float(r["avg_rating"]), 2)
+
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+
+
 
 
 # -----------------------------

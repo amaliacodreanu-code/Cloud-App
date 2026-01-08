@@ -10,7 +10,7 @@ const CustomNavbar = () => {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="/home">Beer Review</Navbar.Brand>
+                <Navbar.Brand href="/home">Drinks Review</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link key="home" href="/home">Home</Nav.Link>
                     <Nav.Link key="discover" href="/discover">Discover</Nav.Link>

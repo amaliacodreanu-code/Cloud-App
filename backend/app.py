@@ -241,6 +241,17 @@ def delete_my_producer_review(review_id):
     return res.json(), res.status_code
 
 
+@app.route("/top-rated", methods=["GET"])
+def get_top_rated():
+    # passthrough query params
+    query = request.query_string.decode("utf-8")
+    url = f'{app.config["DB_API_URL"]}/top-rated'
+    if query:
+        url = f"{url}?{query}"
+    res = requests.get(url)
+    return res.json(), res.status_code
+
+
 
 # -----------------------------
 # PROFILE

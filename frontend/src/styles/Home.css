@@ -1,0 +1,77 @@
+/* src/styles/Home.css */
+
+.home-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 180, 216, 0.18), transparent 55%),
+              radial-gradient(900px 700px at 80% 20%, rgba(255, 183, 3, 0.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+  display: flex;
+  justify-content: center;
+  color: #e9eefc;
+}
+
+.home-card {
+  max-width: 820px;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.home-head {
+  margin-bottom: 18px;
+}
+
+.home-title {
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.home-subtitle {
+  color: rgba(233, 238, 252, 0.85);
+  margin: 0;
+}
+
+.home-section {
+  margin-top: 18px;
+}
+
+.home-section-title {
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.home-accordion .accordion-item {
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.home-accordion .accordion-button {
+  background: rgba(10, 15, 26, 0.45);
+  color: rgba(233, 238, 252, 0.92);
+  font-weight: 800;
+}
+
+.home-accordion .accordion-button:focus {
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.18);
+}
+
+.home-accordion .accordion-body {
+  color: rgba(233, 238, 252, 0.85);
+}
+
+.home-accordion a {
+  color: rgba(255, 243, 206, 0.95);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-accordion a:hover {
+  text-decoration: underline;
+}

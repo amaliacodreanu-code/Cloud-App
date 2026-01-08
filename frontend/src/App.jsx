@@ -6,6 +6,7 @@ import Discover from "./components/Discover.jsx";
 import Search from "./components/Search.jsx";
 import Profile from "./components/Profile.jsx";
 import LandingPage from "./components/LandingPage.jsx";
+import Recommended from "./components/Recommended";
 
 function App() {
   const isAuthenticated = () => {
@@ -29,6 +30,7 @@ function App() {
       <Route path="/search" element={<PrivateRoute element={<Search/>}/>}/>
       <Route path="/home" element={<PrivateRoute element={<Home/>}/>}/>
       <Route path="/profile" element={<PrivateRoute element={<Profile/>}/>}/>
+      <Route path="/recommendations" element={<Recommended />} />
       <Route path="*" element={<h1>Not Found</h1>}/>
     </Routes>
   );

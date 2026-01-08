@@ -43,16 +43,17 @@ def initialize_db():
 initialize_db()
 
 @app.route('/register_user', methods=['POST'])
+@app.route('/register_user', methods=['POST'])
 def register_user():
     data = request.json
     username = data.get('username')
     password = data.get('password')
+    preferred_style = data.get('preferred_style')  # nou
 
     if users_collection.find_one({'username': username}):
         return jsonify({'message': 'Username already exists'}), 400
 
-    users_collection.insert_one(user_schema(username, password).to_json())
-
+    users_collection.insert_one(user_schema(username, password, preferred_style=preferred_style, bio="", last_login=None).to_json())
     return jsonify({'message': 'User created successfully'}), 201
 
 
@@ -258,6 +259,70 @@ def delete_review(review_id):
     users_collection.update_one({'username': username}, {'$set': {'reviews': user['reviews']}})
     
     return jsonify({'message': 'Review deleted successfully'}), 200
+
+from datetime import datetime, timezone
+
+def compute_rank(review_count: int) -> str:
+    if review_count <= 5:
+        return "Novice"
+    return "Expert"
+
+@app.route('/profile', methods=['GET'])
+def get_profile():
+    data = request.json or {}
+    username = data.get('username')
+
+    user = users_collection.find_one({'username': username})
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    review_count = len(user.get('reviews', []))
+    rank = compute_rank(review_count)
+
+    return jsonify({
+        "username": user.get("username"),
+        "bio": user.get("bio", ""),
+        "preferred_style": user.get("preferred_style"),
+        "last_login": user.get("last_login"),
+        "review_count": review_count,
+        "rank": rank
+    }), 200
+
+@app.route('/profile', methods=['PUT'])
+def update_profile():
+    data = request.json or {}
+    username = data.get('username')
+    bio = data.get('bio')
+    preferred_style = data.get('preferred_style')
+
+    user = users_collection.find_one({'username': username})
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    update = {}
+    if bio is not None:
+        update["bio"] = bio
+    if preferred_style is not None:
+        update["preferred_style"] = preferred_style
+
+    if not update:
+        return jsonify({'message': 'Nothing to update'}), 400
+
+    users_collection.update_one({'username': username}, {'$set': update})
+    return jsonify({'message': 'Profile updated'}), 200
+
+@app.route('/last_login', methods=['POST'])
+def set_last_login():
+    data = request.json or {}
+    username = data.get('username')
+
+    user = users_collection.find_one({'username': username})
+    if not user:
+        return jsonify({'message': 'User not found'}), 404
+
+    now = datetime.now(timezone.utc).isoformat()
+    users_collection.update_one({'username': username}, {'$set': {'last_login': now}})
+    return jsonify({'message': 'Last login updated', 'last_login': now}), 200
 
 
 if __name__ == '__main__':

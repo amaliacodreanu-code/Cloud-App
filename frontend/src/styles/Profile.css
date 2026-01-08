@@ -1,0 +1,241 @@
+.profile-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 180, 216, 0.18), transparent 55%),
+              radial-gradient(900px 700px at 80% 20%, rgba(255, 183, 3, 0.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+  display: flex;
+  justify-content: center;
+  color: #e9eefc;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 720px;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  animation: profileBreathe 6s ease-in-out infinite;
+}
+
+@keyframes profileBreathe {
+  0%, 100% {
+    opacity: 0.94;
+    box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-username {
+  font-weight: 800;
+  color: rgba(233, 238, 252, 0.9);
+}
+
+.profile-username span {
+  color: rgba(255, 243, 206, 0.95);
+}
+
+.profile-stats {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.profile-stats div {
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dr-badge {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dr-badge-icon {
+  margin-right: 6px;
+}
+
+.dr-badge-novice {
+  background: rgba(0, 180, 216, 0.18);
+  border: 1px solid rgba(0, 180, 216, 0.45);
+}
+
+.dr-badge-expert {
+  background: rgba(255, 183, 3, 0.18);
+  border: 1px solid rgba(255, 183, 3, 0.45);
+  color: rgba(255, 243, 206, 0.95);
+}
+
+.profile-pref {
+  margin-top: 12px;
+  font-size: 14px;
+  color: rgba(233, 238, 252, 0.85);
+}
+
+.profile-form {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profile-form label {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.profile-form textarea,
+.profile-form select {
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(10, 15, 26, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(233, 238, 252, 0.95);
+}
+
+.profile-form textarea {
+  min-height: 110px;
+}
+
+.profile-form textarea:focus,
+.profile-form select:focus {
+  outline: none;
+  border-color: rgba(0, 180, 216, 0.45);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.18);
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-actions button {
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffd166, #ff7a59);
+  color: #121826;
+  cursor: pointer;
+}
+
+.profile-actions button:hover {
+  filter: brightness(1.05);
+}
+
+.profile-reviews {
+  margin-top: 22px;
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.profile-reviews-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.profile-reviews-title {
+  font-weight: 900;
+}
+
+.profile-reviews-count {
+  font-size: 12px;
+  font-weight: 900;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(10, 15, 26, 0.35);
+}
+
+.profile-reviews-list {
+  max-height: 240px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.profile-review-item {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.profile-review-item + .profile-review-item {
+  margin-top: 10px;
+}
+
+.profile-review-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.profile-review-beer {
+  font-weight: 900;
+}
+
+.profile-review-rating {
+  font-weight: 900;
+  background: rgba(255, 183, 3, 0.18);
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.profile-review-text {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.profile-review-tags {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 180, 216, 0.18);
+  border: 1px solid rgba(0, 180, 216, 0.35);
+}
+
+.profile-review-empty {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(10, 15, 26, 0.25);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  color: rgba(233, 238, 252, 0.7);
+}

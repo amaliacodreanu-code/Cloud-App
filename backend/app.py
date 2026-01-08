@@ -185,6 +185,27 @@ def delete_review(review_id):
     res = requests.delete(f'{app.config["DB_API_URL"]}/reviews/{review_id}', json={'username': current_user})
     return res.json(), res.status_code
 
+@app.route('/profile', methods=['GET'])
+@jwt_required()
+def profile_get():
+    current_user = get_jwt_identity()
+    res = requests.get(f'{app.config["DB_API_URL"]}/profile', json={'username': current_user})
+    return res.json(), res.status_code
+
+@app.route('/profile', methods=['PUT'])
+@jwt_required()
+def profile_put():
+    current_user = get_jwt_identity()
+    data = request.get_json() or {}
+    payload = {
+        "username": current_user,
+        "bio": data.get("bio"),
+        "preferred_style": data.get("preferred_style")
+    }
+    res = requests.put(f'{app.config["DB_API_URL"]}/profile', json=payload)
+    return res.json(), res.status_code
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

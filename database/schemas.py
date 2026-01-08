@@ -1,16 +1,22 @@
 class user_schema:
-    def __init__(self, username, password, fav_beers=[], reviews=[]):
+    def __init__(self, username, password, fav_beers=None, reviews=None, preferred_style=None, bio="", last_login=None):
         self.username = username
         self.password = password
-        self.fav_beers = fav_beers
-        self.reviews = reviews
+        self.fav_beers = fav_beers or []
+        self.reviews = reviews or []
+        self.preferred_style = preferred_style
+        self.bio = bio
+        self.last_login = last_login
 
     def to_json(self):
         return {
-            'username': self.username,
-            'password': self.password,
-            'fav_beers': self.fav_beers,
-            'reviews': self.reviews
+            "username": self.username,
+            "password": self.password,
+            "fav_beers": self.fav_beers,
+            "reviews": self.reviews,
+            "preferred_style": self.preferred_style,
+            "bio": self.bio,
+            "last_login": self.last_login
         }
 
     @staticmethod

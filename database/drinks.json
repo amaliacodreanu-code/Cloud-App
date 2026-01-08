@@ -1,0 +1,3181 @@
+[
+  {
+    "id": "drink_1",
+    "sourceId": "1",
+    "name": "Hocus Pocus",
+    "drinkType": "beer",
+    "category": "Other Style",
+    "style": "Light American Wheat Ale or Lager",
+    "abv": 4.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_812",
+    "description": "Our take on a classic summer ale.  A toast to weeds, rays, and summer haze.  A light, crisp ale for mowing lawns, hitting lazy fly balls, and communing with nature, Hocus Pocus is offered up as a summer sacrifice to clodless days.\n\nIts malty sweetness finishes tart and crisp and is best apprediated with a wedge of orange.",
+    "tags": [
+      "lager",
+      "wheat"
+    ],
+    "avgRating": 4.2,
+    "reviewCount": 235,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_6",
+    "sourceId": "6",
+    "name": "Winter Warmer",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 5.199999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1385",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.3,
+    "reviewCount": 82,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_8",
+    "sourceId": "8",
+    "name": "Oatmeal Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 5.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1099",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 2.9,
+    "reviewCount": 488,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_10",
+    "sourceId": "10",
+    "name": "Chocolate Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_545",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 3.0,
+    "reviewCount": 569,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_13",
+    "sourceId": "13",
+    "name": "The Kidd Lager",
+    "drinkType": "beer",
+    "category": "German Lager",
+    "style": "German-Style Schwarzbier",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_545",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 4.6,
+    "reviewCount": 297,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_14",
+    "sourceId": "14",
+    "name": "Imperial Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 7.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1099",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 4.2,
+    "reviewCount": 369,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_17",
+    "sourceId": "17",
+    "name": "Wiesen Edel Weisse",
+    "drinkType": "beer",
+    "category": "German Ale",
+    "style": "South German-Style Hefeweizen",
+    "abv": 6.199999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1023",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.7,
+    "reviewCount": 539,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_20",
+    "sourceId": "20",
+    "name": "Cow Palace Scotch Ale 1998",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Scotch Ale",
+    "abv": 8.699999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_483",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.4,
+    "reviewCount": 250,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_26",
+    "sourceId": "26",
+    "name": "Winter Ale",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 5.900000095367432,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1220",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.5,
+    "reviewCount": 357,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_27",
+    "sourceId": "27",
+    "name": "Full Moon Winter Ale",
+    "drinkType": "beer",
+    "category": "Belgian and French Ale",
+    "style": "Other Belgian-Style Ales",
+    "abv": 5.599999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_878",
+    "description": "This full-bodied ale is brewed with roasted malts and a hint of Dark Belgian sugar for a perfectly balanced taste.",
+    "tags": [
+      "belgian"
+    ],
+    "avgRating": 4.1,
+    "reviewCount": 525,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_28",
+    "sourceId": "28",
+    "name": "Odell IPA",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style India Pale Ale",
+    "abv": 7.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_935",
+    "description": "We took the traditional IPA, originally shipped from England to India in the 1700's, and made it bolder and more flavorful - American Style. We've added new varieties of highly aromatic American hops to create a distinctive bitterness profile and an incredible hop character.",
+    "tags": [],
+    "avgRating": 3.9,
+    "reviewCount": 589,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_29",
+    "sourceId": "29",
+    "name": "Ornery Amber Lager",
+    "drinkType": "beer",
+    "category": "North American Lager",
+    "style": "American-Style Lager",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1271",
+    "description": "Ornery Amber is brewed with a blend of the finest European hops and gently roasted malts.",
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 4.8,
+    "reviewCount": 134,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_30",
+    "sourceId": "30",
+    "name": "Cutthroat Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": 4.800000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_935",
+    "description": "Not quite a stout but definitely no lightweight, Cutthroat Porter is smooth and robust. Inspired by the classic London porters, we use dark roasted malts to create a deep, rich color and flavor that hint at chocolate and coffee. We named it Cutthroat Porter as our tribute to the Colorado state fish - with its own rich heritage and unmistakable dark coloring. And while we're big fans of small batches, here's to the currently threatened Cutthroat population reaching mass quantities.",
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 3.0,
+    "reviewCount": 505,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_31",
+    "sourceId": "31",
+    "name": "Maple Nut Brown Ale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1271",
+    "description": "Maple syrup is added to each barrel of Maple Nut Brown Ale to impart roasted sweetness balancing the nut flavor produced by chocolate malts.",
+    "tags": [],
+    "avgRating": 4.7,
+    "reviewCount": 134,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_37",
+    "sourceId": "37",
+    "name": "Winter Cheer",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1175",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.0,
+    "reviewCount": 140,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_40",
+    "sourceId": "40",
+    "name": "Quelque Chose",
+    "drinkType": "beer",
+    "category": "Belgian and French Ale",
+    "style": "Belgian-Style Fruit Lambic",
+    "abv": 8.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1307",
+    "description": "Quelque Chose was launched in January 1996. This versatile beer was specifically developed as a winter beer because, when warmed to 70oC (160oF), it can be taken as a hot drink. On the other hand, on the rocks, it is a wonderful aperitif. The cherries are soaked for months in slightly bitter ale before being blended into the beer. Quelque Chose is made with dark roasted malts, and the end result is something commonly known as an authentic nectar. The most original of the Unibroue line, it is highly appreciated by winter-sports enthusiasts.",
+    "tags": [
+      "belgian"
+    ],
+    "avgRating": 2.9,
+    "reviewCount": 34,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_42",
+    "sourceId": "42",
+    "name": "Bi\u00e8re Darbyste",
+    "drinkType": "beer",
+    "category": "Other Style",
+    "style": "Light American Wheat Ale or Lager",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_170",
+    "description": null,
+    "tags": [
+      "lager",
+      "wheat"
+    ],
+    "avgRating": 3.5,
+    "reviewCount": 173,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_43",
+    "sourceId": "43",
+    "name": "Maracaibo Especial",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": 7.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_723",
+    "description": "A rich brown ale inspired by the enigmatic monastic brews of Belgium, and the mysterious mist shrouded jungles of the tropics. Brewed with real cacao, and spiced with cinnamon and sweet orange peel for a sensual delight. A brew to be sipped, savored, and enjoyed!",
+    "tags": [],
+    "avgRating": 3.6,
+    "reviewCount": 227,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_45",
+    "sourceId": "45",
+    "name": "Calabaza Blanca",
+    "drinkType": "beer",
+    "category": "Belgian and French Ale",
+    "style": "Other Belgian-Style Ales",
+    "abv": 4.800000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_723",
+    "description": "Aged in large oak casks and refermented in the bottle, Calabaza Blanca is a Belgian Biere Blanche. Spiced with orange peel and corriander, you'll find it refreshingly tart, with a wonderfully dry finish.",
+    "tags": [
+      "belgian"
+    ],
+    "avgRating": 4.1,
+    "reviewCount": 394,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_46",
+    "sourceId": "46",
+    "name": "Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_901",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 4.2,
+    "reviewCount": 146,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_47",
+    "sourceId": "47",
+    "name": "Cardinal Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_901",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.7,
+    "reviewCount": 675,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_50",
+    "sourceId": "50",
+    "name": "Zinnebir",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_176",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.6,
+    "reviewCount": 127,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_57",
+    "sourceId": "57",
+    "name": "Obovoid Empirical Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Imperial Stout",
+    "abv": 8.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_160",
+    "description": null,
+    "tags": [
+      "stout",
+      "strong"
+    ],
+    "avgRating": 4.4,
+    "reviewCount": 348,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_58",
+    "sourceId": "58",
+    "name": "Furious Beer",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style India Pale Ale",
+    "abv": 6.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1221",
+    "description": "Like Hops? You'll like this fire-hued beer. This is the beer I have always dreamed of making. This is the beer that would come to mind while spending the last two years tearing down walls, hanging sheetrock, moving kegs, power washing the ceilings, arguing with various agencies, and cutting the water main. \n\nWithout Golden Promise malt, made by family-owned Simpsons Malt, Furious would just be pissed off-ed. From Scotland, this malt is still produced in the tradition of turning over the barley by hand, resulting in a malt that is unsurpassed in its quality. Golden Promise is also used extensively by premium whisky distilleries such as The Macallan. This malt provides the backbone for the intense hop character. Four American hop varieties are used at a rate of over three pounds per barrel. The result is a rich malt sweetness infused with bright hop flavor and aroma from beginning to end. Oh yeah, it's about 6% alcohol and around 100 IBUs.",
+    "tags": [],
+    "avgRating": 4.0,
+    "reviewCount": 539,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_59",
+    "sourceId": "59",
+    "name": "Bender Beer",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": 5.099999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1221",
+    "description": "This beer is an amalgamation of styles; brown/porter/apa. Five distinct malts, including two from Belgium, give this beer added complexity and depth. We also add oatmeal to this beer to give it a smooth texture not usually associated with this type of beer. We add large amounts of American finishing hops to give Bender a citrus hop aroma because... we like hops. This is a session beer weighing in around 5% alcohol and 25 IBUs. Grab one today, we think you will want another!",
+    "tags": [],
+    "avgRating": 4.7,
+    "reviewCount": 264,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_61",
+    "sourceId": "61",
+    "name": "Killer Penguin",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Barley Wine Ale",
+    "abv": 10.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_160",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.5,
+    "reviewCount": 183,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_62",
+    "sourceId": "62",
+    "name": "Oatmeal Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_236",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 3.1,
+    "reviewCount": 530,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_63",
+    "sourceId": "63",
+    "name": "Isolation Ale",
+    "drinkType": "beer",
+    "category": "Other Style",
+    "style": "Winter Warmer",
+    "abv": 6.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_935",
+    "description": "Ever been in a warm, cozy cabin and had a secret desire to get snowed in? To celebrate the winter season, we offer our Isolation Ale - a traditional winter brew made with premium malts imported from England. It's just one of the reasons Isolation Ale stands alone.",
+    "tags": [],
+    "avgRating": 4.5,
+    "reviewCount": 501,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_66",
+    "sourceId": "66",
+    "name": "Twelve Days",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 5.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_670",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 4.7,
+    "reviewCount": 698,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_68",
+    "sourceId": "68",
+    "name": "Big Shot Seasonal Ale",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_905",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 4.5,
+    "reviewCount": 368,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_70",
+    "sourceId": "70",
+    "name": "Harvest Ale 2007",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 6.699999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1142",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.5,
+    "reviewCount": 292,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_71",
+    "sourceId": "71",
+    "name": "Nut Cracker Ale",
+    "drinkType": "beer",
+    "category": "Other Style",
+    "style": "Winter Warmer",
+    "abv": 5.900000095367432,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_161",
+    "description": "Nutcracker Ale is Boulevard\u00e2\u20acTMs holiday gift for real beer lovers. This hearty, warming brew is a classic winter ale, deep amber in color, with hints of molasses balanced by the \u00e2\u20ac\u0153spiciness\u00e2\u20ac of freshly harvested Chinook hops.",
+    "tags": [],
+    "avgRating": 3.6,
+    "reviewCount": 547,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_72",
+    "sourceId": "72",
+    "name": "Goosinator Smoked Doppelbock 2007",
+    "drinkType": "beer",
+    "category": "North American Lager",
+    "style": "American-Style Lager",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_779",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 3.3,
+    "reviewCount": 454,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_74",
+    "sourceId": "74",
+    "name": "Warrior IPA",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style India Pale Ale",
+    "abv": 6.599999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_779",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.2,
+    "reviewCount": 483,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_78",
+    "sourceId": "78",
+    "name": "Petrus Dubbel Bruin Ale",
+    "drinkType": "beer",
+    "category": "Belgian and French Ale",
+    "style": "Belgian-Style Dubbel",
+    "abv": 6.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_266",
+    "description": null,
+    "tags": [
+      "belgian"
+    ],
+    "avgRating": 3.1,
+    "reviewCount": 629,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_79",
+    "sourceId": "79",
+    "name": "Petrus Speciale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 5.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_266",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.1,
+    "reviewCount": 702,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_80",
+    "sourceId": "80",
+    "name": "Weizengold Hefefein",
+    "drinkType": "beer",
+    "category": "German Ale",
+    "style": "South German-Style Hefeweizen",
+    "abv": 5.099999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1202",
+    "description": "Stiegl Weizengold. It has 12o original gravity; the choicest ingredients and a top fermentation process are responsible for the highest possible quality and an unmistakable flavor. It is brewed according to the classic wheat beer recipe: 60 % wheat malt and 40 % barley malt, top fermentation and in compliance with the Purity Law of 1516.  This fine yeast wheat beer specialty is a refreshing, natural and stimulating beer brand.",
+    "tags": [],
+    "avgRating": 4.3,
+    "reviewCount": 343,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_81",
+    "sourceId": "81",
+    "name": "Never Summer Ale",
+    "drinkType": "beer",
+    "category": "Other Style",
+    "style": "Winter Warmer",
+    "abv": 5.940000057220459,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_160",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.3,
+    "reviewCount": 416,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_82",
+    "sourceId": "82",
+    "name": "Modern Monks Belgian Blonde",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1264",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.4,
+    "reviewCount": 140,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_84",
+    "sourceId": "84",
+    "name": "J\u00f6rger Wei\u00dfe Hell",
+    "drinkType": "beer",
+    "category": "German Ale",
+    "style": "South German-Style Hefeweizen",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_210",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.1,
+    "reviewCount": 550,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_87",
+    "sourceId": "87",
+    "name": "Glacier Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1047",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.6,
+    "reviewCount": 610,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_88",
+    "sourceId": "88",
+    "name": "Bent Nail IPA",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style India Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1047",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.0,
+    "reviewCount": 184,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_90",
+    "sourceId": "90",
+    "name": "Harvest Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_879",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.3,
+    "reviewCount": 391,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_92",
+    "sourceId": "92",
+    "name": "Sharptail Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_879",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.5,
+    "reviewCount": 487,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_93",
+    "sourceId": "93",
+    "name": "Fat Belly Amber",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_879",
+    "description": null,
+    "tags": [],
+    "avgRating": 2.9,
+    "reviewCount": 476,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_94",
+    "sourceId": "94",
+    "name": "Whitetail Wheat",
+    "drinkType": "beer",
+    "category": "North American Lager",
+    "style": "American-Style Lager",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_879",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 4.0,
+    "reviewCount": 293,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_96",
+    "sourceId": "96",
+    "name": "Brunette Nut Brown Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_901",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.3,
+    "reviewCount": 270,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_99",
+    "sourceId": "99",
+    "name": "EOS Hefeweizen",
+    "drinkType": "beer",
+    "category": "German Ale",
+    "style": "South German-Style Hefeweizen",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_901",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.8,
+    "reviewCount": 31,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_100",
+    "sourceId": "100",
+    "name": "India Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_901",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.3,
+    "reviewCount": 370,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_101",
+    "sourceId": "101",
+    "name": "Winter Ale",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 6.300000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1185",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.1,
+    "reviewCount": 425,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_102",
+    "sourceId": "102",
+    "name": "Pride & Joy Mild Ale",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "English-Style Pale Mild Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1260",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.1,
+    "reviewCount": 312,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_103",
+    "sourceId": "103",
+    "name": "Robert the Bruce Scottish Ale",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Scotch Ale",
+    "abv": 7.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1260",
+    "description": "A big malty body from chocolate and roasted malts, well balanced with just the right combination of hops. Robust yet smooth, a true malt-lover's delight.",
+    "tags": [],
+    "avgRating": 4.8,
+    "reviewCount": 668,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_104",
+    "sourceId": "104",
+    "name": "Lump of Coal Dark Holiday Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 8.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1056",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 3.2,
+    "reviewCount": 109,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_105",
+    "sourceId": "105",
+    "name": "Warm Welcome Nut Browned Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": 6.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1056",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.6,
+    "reviewCount": 274,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_106",
+    "sourceId": "106",
+    "name": "Pendle Witches Brew",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 5.099999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_884",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.9,
+    "reviewCount": 546,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_107",
+    "sourceId": "107",
+    "name": "Carnegie Stark-Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": 5.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_345",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 4.5,
+    "reviewCount": 652,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_108",
+    "sourceId": "108",
+    "name": "Harvest Ale 2002",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 11.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_727",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.8,
+    "reviewCount": 663,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_109",
+    "sourceId": "109",
+    "name": "Woody Organic IPA",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style India Pale Ale",
+    "abv": 6.199999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1075",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.9,
+    "reviewCount": 44,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_111",
+    "sourceId": "111",
+    "name": "Leute Bok Bier",
+    "drinkType": "beer",
+    "category": "German Lager",
+    "style": "Traditional German-Style Bock",
+    "abv": 7.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_304",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 3.3,
+    "reviewCount": 385,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_114",
+    "sourceId": "114",
+    "name": "Tikka Gold",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 5.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_304",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.1,
+    "reviewCount": 195,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_121",
+    "sourceId": "121",
+    "name": "Triple Exultation Old Ale",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 9.699999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_481",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.1,
+    "reviewCount": 450,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_123",
+    "sourceId": "123",
+    "name": "Falcon Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1064",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.9,
+    "reviewCount": 39,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_124",
+    "sourceId": "124",
+    "name": "Buzzsaw Brown",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": 4.800000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_441",
+    "description": "By 1915, Bend, Oregon, was alive with the sound of the buzz saw, as two of the country's largest pine sawmills set up shop on the banks of the Deschutes River.  The mills are  gone now, but the smokestacks still stand testament to Bend's humble beginnings. \n\nBuzzsaw Brown is an easy-drinking beer that is refreshing after a hard day's work. The timber mills in Bend may be closed, but whether your adventure includes a day of scaling rock faces, hitting 18 holes or skiing the slopes in spring, Buzzsaw Brown is the perfect end to a fun-filled day.\n\n\u00e2\u20ac\u0153Buzzsaw Brown is one of my favorite beers,\u00e2\u20ac says Deschutes Brewery Brewmaster Larry Sidor. \u00e2\u20ac\u0153The unique combination of European and American malts makes it a very food friendly beer that pairs well with a wide variety of flavors.\u00e2\u20ac",
+    "tags": [],
+    "avgRating": 4.0,
+    "reviewCount": 665,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_125",
+    "sourceId": "125",
+    "name": "Eisenbahn South American Pale Ale (S.A.P.A.)",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_369",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.6,
+    "reviewCount": 552,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_126",
+    "sourceId": "126",
+    "name": "Geist Bock",
+    "drinkType": "beer",
+    "category": "German Lager",
+    "style": "Traditional German-Style Bock",
+    "abv": 6.099999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_584",
+    "description": "This is one of our rare lagers brewed in the style of the German Heiliges Geist Bock, or Holy Ghost Bock. The name refers to the lighter nature of the beer as opposed to the darker and heavier Doppel Bock and Mai Bock also brewed during the spring in Germany. There is a rich malt flavor, a firm German style lager head, and a clean lagered finish to this beer.  Available on draft or in 12 oz. bottles.",
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 3.6,
+    "reviewCount": 359,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_127",
+    "sourceId": "127",
+    "name": "Troll Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_623",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 4.7,
+    "reviewCount": 674,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_128",
+    "sourceId": "128",
+    "name": "Dark Ale",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "English-Style Pale Mild Ale",
+    "abv": 4.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_397",
+    "description": "A dark brew full of promise. Coopers Dark Ale is a journey in taste, starting fresh and creamy, and finishing with a lingering coffee flavour. \n\nConditioned and naturally brewed using the top fermentation method, Coopers 'Dark' is made using roasted and chocolate malts, giving it a rich dark colour and unique flavour. \n\nCoopers Dark Ale has no additives and no preservatives.",
+    "tags": [],
+    "avgRating": 2.8,
+    "reviewCount": 165,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_129",
+    "sourceId": "129",
+    "name": "Cinder Cone Red",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": 5.400000095367432,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_441",
+    "description": "Cinder Cone Red's diverse selection of hops and barley captivates thirsty palates with its toffee-like flavor, intense citrus aroma and defined bitterness.\n\nLocated on the northern slope of Mt. Bachelor, the Cinder Cone was also known as \"Red Hill\" due to its reddish color that is revealed as the seasons change, the weather warms and the snow melts.  It's spring. Time to get outside.",
+    "tags": [],
+    "avgRating": 4.2,
+    "reviewCount": 136,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_130",
+    "sourceId": "130",
+    "name": "LTD 02 Lager",
+    "drinkType": "beer",
+    "category": "German Lager",
+    "style": "Traditional German-Style Bock",
+    "abv": 6.400000095367432,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_562",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 3.3,
+    "reviewCount": 545,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_134",
+    "sourceId": "134",
+    "name": "Blue Dot Double India Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "Imperial or Double India Pale Ale",
+    "abv": 7.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_622",
+    "description": null,
+    "tags": [
+      "strong"
+    ],
+    "avgRating": 2.9,
+    "reviewCount": 559,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_135",
+    "sourceId": "135",
+    "name": "Nugget",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_562",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.3,
+    "reviewCount": 676,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_136",
+    "sourceId": "136",
+    "name": "American Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1175",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.8,
+    "reviewCount": 56,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_138",
+    "sourceId": "138",
+    "name": "Odell Red Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": 6.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_935",
+    "description": "The Rocky Mountain Goat is no ordinary goat. Just like Odell Red is no ordinary red. \n\nWe took the American-style red to a whole new level by adding a variety of aggressive American hops\u2014giving this ale a distinctive fresh hop aroma and flavor. \n\nWe think you'll agree this red has some serious kick.",
+    "tags": [],
+    "avgRating": 4.1,
+    "reviewCount": 223,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_142",
+    "sourceId": "142",
+    "name": "Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_447",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.4,
+    "reviewCount": 343,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_143",
+    "sourceId": "143",
+    "name": "Silk Lady",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 4.400000095367432,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_447",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.4,
+    "reviewCount": 354,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_144",
+    "sourceId": "144",
+    "name": "Danger Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": 5.199999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_447",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.5,
+    "reviewCount": 67,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_147",
+    "sourceId": "147",
+    "name": "Steelie Brown Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1151",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.2,
+    "reviewCount": 270,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_149",
+    "sourceId": "149",
+    "name": "Trumpeter",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1151",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 3.2,
+    "reviewCount": 672,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_150",
+    "sourceId": "150",
+    "name": "Nitro Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1264",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 3.3,
+    "reviewCount": 224,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_152",
+    "sourceId": "152",
+    "name": "Old Stock Ale 2007",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 11.699999809265137,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_919",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.0,
+    "reviewCount": 16,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_153",
+    "sourceId": "153",
+    "name": "Cold Hop",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "English-Style India Pale Ale",
+    "abv": 6.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_160",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.4,
+    "reviewCount": 626,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_157",
+    "sourceId": "157",
+    "name": "Biere de Mars",
+    "drinkType": "beer",
+    "category": "British Ale",
+    "style": "Old Ale",
+    "abv": 7.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_723",
+    "description": "A sustaining beer that is brewed to comfort in the gusty ides of March and welcome in a wealth of warmer weather.",
+    "tags": [],
+    "avgRating": 4.5,
+    "reviewCount": 290,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_161",
+    "sourceId": "161",
+    "name": "Smoked Hefe",
+    "drinkType": "beer",
+    "category": "North American Lager",
+    "style": "American-Style Lager",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_869",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 3.8,
+    "reviewCount": 475,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_162",
+    "sourceId": "162",
+    "name": "The Unforgiven Amber Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": 5.800000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1084",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.3,
+    "reviewCount": 627,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_164",
+    "sourceId": "164",
+    "name": "Duke IPA",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style India Pale Ale",
+    "abv": 5.099999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_595",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.9,
+    "reviewCount": 250,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_165",
+    "sourceId": "165",
+    "name": "Broad Axe Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 5.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_595",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 3.4,
+    "reviewCount": 101,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_166",
+    "sourceId": "166",
+    "name": "Northern Light Lager",
+    "drinkType": "beer",
+    "category": "North American Lager",
+    "style": "American-Style Lager",
+    "abv": 4.400000095367432,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_595",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 4.8,
+    "reviewCount": 120,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_167",
+    "sourceId": "167",
+    "name": "Podge Belgian Imperial Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 10.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_31",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 4.0,
+    "reviewCount": 373,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_168",
+    "sourceId": "168",
+    "name": "Okocim Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": 8.300000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_307",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 4.4,
+    "reviewCount": 595,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_177",
+    "sourceId": "177",
+    "name": "Luci\u00e9rnaga",
+    "drinkType": "beer",
+    "category": "Belgian and French Ale",
+    "style": "Belgian-Style Pale Ale",
+    "abv": 6.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_723",
+    "description": "An artisan pale ale brewed in the Grand Cru tradition. Enjoy its golden effervescence and gentle hop aroma. Coriander and Grains of Paradise round out the spicy palate, melting o so softly into a silken finish of hoppiness and bliss! Make any season a celebration!",
+    "tags": [
+      "belgian"
+    ],
+    "avgRating": 3.9,
+    "reviewCount": 621,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_178",
+    "sourceId": "178",
+    "name": "Cuv\u00e9e des Champions 2003-2004",
+    "drinkType": "beer",
+    "category": "Belgian and French Ale",
+    "style": "Belgian-Style Fruit Lambic",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_202",
+    "description": null,
+    "tags": [
+      "belgian"
+    ],
+    "avgRating": 4.6,
+    "reviewCount": 518,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_181",
+    "sourceId": "181",
+    "name": "Bock",
+    "drinkType": "beer",
+    "category": "German Lager",
+    "style": "Traditional German-Style Bock",
+    "abv": 5.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_39",
+    "description": null,
+    "tags": [
+      "lager"
+    ],
+    "avgRating": 3.0,
+    "reviewCount": 369,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_182",
+    "sourceId": "182",
+    "name": "Double India Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 8.600000381469727,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_810",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.9,
+    "reviewCount": 228,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_185",
+    "sourceId": "185",
+    "name": "Certified Organic India Pale Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 7.0,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_481",
+    "description": null,
+    "tags": [],
+    "avgRating": 3.5,
+    "reviewCount": 216,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_186",
+    "sourceId": "186",
+    "name": "Certified Organic Porter",
+    "drinkType": "beer",
+    "category": "Irish Ale",
+    "style": "Porter",
+    "abv": 5.5,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_481",
+    "description": null,
+    "tags": [
+      "porter"
+    ],
+    "avgRating": 4.3,
+    "reviewCount": 186,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_188",
+    "sourceId": "188",
+    "name": "Certified Organic Amber Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Amber/Red Ale",
+    "abv": 4.800000190734863,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_481",
+    "description": "Eel River Brewing Company, brewers of California's first Certified Organic Ale, proudly brings you our Organic Amber Ale. Unique in flavor and purity, this medium bodied beer has a hoppy bouquet and a distinctive rich taste with a caramel-like sweetness that is balanced with a liberal dose of certified organic Pacific Gems and Hallertau hops, imported from New Zealand. Pure taste, pure ingredients, pure good.",
+    "tags": [],
+    "avgRating": 4.5,
+    "reviewCount": 431,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_190",
+    "sourceId": "190",
+    "name": "Beer Town Brown",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Brown Ale",
+    "abv": null,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_255",
+    "description": null,
+    "tags": [],
+    "avgRating": 2.8,
+    "reviewCount": 452,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_192",
+    "sourceId": "192",
+    "name": "Mephistopheles Stout",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Stout",
+    "abv": 16.030000686645508,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_62",
+    "description": null,
+    "tags": [
+      "stout"
+    ],
+    "avgRating": 3.2,
+    "reviewCount": 613,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_196",
+    "sourceId": "196",
+    "name": "Export Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 5.099999904632568,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_1136",
+    "description": null,
+    "tags": [],
+    "avgRating": 4.4,
+    "reviewCount": 661,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_201",
+    "sourceId": "201",
+    "name": "Undercover Investigation Shut-Down Ale",
+    "drinkType": "beer",
+    "category": "North American Ale",
+    "style": "American-Style Pale Ale",
+    "abv": 9.279999732971191,
+    "ibu": null,
+    "srm": null,
+    "producerId": "producer_765",
+    "description": null,
+    "tags": [],
+    "avgRating": 2.9,
+    "reviewCount": 257,
+    "lastModified": "2010-07-22 20:00:20 UTC"
+  },
+  {
+    "id": "drink_101",
+    "name": "Signature Drink 101",
+    "category": "liqueur",
+    "abv": 26.6,
+    "producerId": "producer_1136",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.18,
+    "reviewCount": 342,
+    "tags": [
+      "sweet",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_102",
+    "name": "Signature Drink 102",
+    "category": "liqueur",
+    "abv": 34.5,
+    "producerId": "producer_765",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.75,
+    "reviewCount": 179,
+    "tags": [
+      "dry",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_103",
+    "name": "Signature Drink 103",
+    "category": "spirit",
+    "abv": 39.6,
+    "producerId": "producer_878",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.94,
+    "reviewCount": 342,
+    "tags": [
+      "light",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_104",
+    "name": "Signature Drink 104",
+    "category": "cocktail",
+    "abv": 33.8,
+    "producerId": "producer_622",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.05,
+    "reviewCount": 148,
+    "tags": [
+      "fruity",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_105",
+    "name": "Signature Drink 105",
+    "category": "beer",
+    "abv": 10.6,
+    "producerId": "producer_1221",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.7,
+    "reviewCount": 105,
+    "tags": [
+      "light",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_106",
+    "name": "Signature Drink 106",
+    "category": "cocktail",
+    "abv": 26.5,
+    "producerId": "producer_483",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.93,
+    "reviewCount": 69,
+    "tags": [
+      "strong",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_107",
+    "name": "Signature Drink 107",
+    "category": "cocktail",
+    "abv": 9.9,
+    "producerId": "producer_905",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.0,
+    "reviewCount": 296,
+    "tags": [
+      "sweet",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_108",
+    "name": "Signature Drink 108",
+    "category": "spirit",
+    "abv": 11.2,
+    "producerId": "producer_1220",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.89,
+    "reviewCount": 220,
+    "tags": [
+      "dry",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_109",
+    "name": "Signature Drink 109",
+    "category": "liqueur",
+    "abv": 19.6,
+    "producerId": "producer_1142",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.0,
+    "reviewCount": 177,
+    "tags": [
+      "bitter",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_110",
+    "name": "Signature Drink 110",
+    "category": "cocktail",
+    "abv": 22.5,
+    "producerId": "producer_584",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.76,
+    "reviewCount": 259,
+    "tags": [
+      "classic",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_111",
+    "name": "Signature Drink 111",
+    "category": "liqueur",
+    "abv": 22.2,
+    "producerId": "producer_483",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.75,
+    "reviewCount": 247,
+    "tags": [
+      "fruity",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_112",
+    "name": "Signature Drink 112",
+    "category": "beer",
+    "abv": 22.2,
+    "producerId": "producer_584",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.07,
+    "reviewCount": 383,
+    "tags": [
+      "sweet",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_113",
+    "name": "Signature Drink 113",
+    "category": "wine",
+    "abv": 19.0,
+    "producerId": "producer_1142",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.59,
+    "reviewCount": 298,
+    "tags": [
+      "strong",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_114",
+    "name": "Signature Drink 114",
+    "category": "beer",
+    "abv": 38.8,
+    "producerId": "producer_919",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.64,
+    "reviewCount": 242,
+    "tags": [
+      "dry",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_115",
+    "name": "Signature Drink 115",
+    "category": "wine",
+    "abv": 38.8,
+    "producerId": "producer_39",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.54,
+    "reviewCount": 190,
+    "tags": [
+      "dry",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_116",
+    "name": "Signature Drink 116",
+    "category": "beer",
+    "abv": 6.0,
+    "producerId": "producer_202",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.78,
+    "reviewCount": 346,
+    "tags": [
+      "dry",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_117",
+    "name": "Signature Drink 117",
+    "category": "spirit",
+    "abv": 37.7,
+    "producerId": "producer_1271",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.74,
+    "reviewCount": 182,
+    "tags": [
+      "strong",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_118",
+    "name": "Signature Drink 118",
+    "category": "wine",
+    "abv": 9.3,
+    "producerId": "producer_62",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.77,
+    "reviewCount": 291,
+    "tags": [
+      "bitter",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_119",
+    "name": "Signature Drink 119",
+    "category": "spirit",
+    "abv": 36.4,
+    "producerId": "producer_670",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.95,
+    "reviewCount": 62,
+    "tags": [
+      "classic",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_120",
+    "name": "Signature Drink 120",
+    "category": "spirit",
+    "abv": 4.2,
+    "producerId": "producer_878",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.58,
+    "reviewCount": 313,
+    "tags": [
+      "light",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_121",
+    "name": "Signature Drink 121",
+    "category": "spirit",
+    "abv": 34.9,
+    "producerId": "producer_584",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.05,
+    "reviewCount": 295,
+    "tags": [
+      "dry",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_122",
+    "name": "Signature Drink 122",
+    "category": "wine",
+    "abv": 19.5,
+    "producerId": "producer_1175",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.64,
+    "reviewCount": 39,
+    "tags": [
+      "strong",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_123",
+    "name": "Signature Drink 123",
+    "category": "beer",
+    "abv": 27.9,
+    "producerId": "producer_584",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.39,
+    "reviewCount": 209,
+    "tags": [
+      "sweet",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_124",
+    "name": "Signature Drink 124",
+    "category": "liqueur",
+    "abv": 39.2,
+    "producerId": "producer_447",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.74,
+    "reviewCount": 137,
+    "tags": [
+      "light",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_125",
+    "name": "Signature Drink 125",
+    "category": "liqueur",
+    "abv": 39.5,
+    "producerId": "producer_1056",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.21,
+    "reviewCount": 110,
+    "tags": [
+      "dry",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_126",
+    "name": "Signature Drink 126",
+    "category": "spirit",
+    "abv": 27.3,
+    "producerId": "producer_170",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.73,
+    "reviewCount": 287,
+    "tags": [
+      "bitter",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_127",
+    "name": "Signature Drink 127",
+    "category": "wine",
+    "abv": 27.0,
+    "producerId": "producer_1047",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.55,
+    "reviewCount": 209,
+    "tags": [
+      "light",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_128",
+    "name": "Signature Drink 128",
+    "category": "beer",
+    "abv": 10.6,
+    "producerId": "producer_595",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.1,
+    "reviewCount": 380,
+    "tags": [
+      "classic",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_129",
+    "name": "Signature Drink 129",
+    "category": "cocktail",
+    "abv": 26.1,
+    "producerId": "producer_562",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.42,
+    "reviewCount": 367,
+    "tags": [
+      "dry",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_130",
+    "name": "Signature Drink 130",
+    "category": "beer",
+    "abv": 11.4,
+    "producerId": "producer_869",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.52,
+    "reviewCount": 153,
+    "tags": [
+      "bitter",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_131",
+    "name": "Signature Drink 131",
+    "category": "cocktail",
+    "abv": 28.5,
+    "producerId": "producer_878",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.82,
+    "reviewCount": 230,
+    "tags": [
+      "classic",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_132",
+    "name": "Signature Drink 132",
+    "category": "beer",
+    "abv": 13.9,
+    "producerId": "producer_369",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.72,
+    "reviewCount": 244,
+    "tags": [
+      "strong",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_133",
+    "name": "Signature Drink 133",
+    "category": "wine",
+    "abv": 17.6,
+    "producerId": "producer_623",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.52,
+    "reviewCount": 163,
+    "tags": [
+      "strong",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_134",
+    "name": "Signature Drink 134",
+    "category": "liqueur",
+    "abv": 35.9,
+    "producerId": "producer_1023",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.6,
+    "reviewCount": 167,
+    "tags": [
+      "classic",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_135",
+    "name": "Signature Drink 135",
+    "category": "cocktail",
+    "abv": 8.0,
+    "producerId": "producer_723",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.77,
+    "reviewCount": 19,
+    "tags": [
+      "fruity",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_136",
+    "name": "Signature Drink 136",
+    "category": "liqueur",
+    "abv": 11.1,
+    "producerId": "producer_1185",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.12,
+    "reviewCount": 198,
+    "tags": [
+      "bitter",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_137",
+    "name": "Signature Drink 137",
+    "category": "spirit",
+    "abv": 35.9,
+    "producerId": "producer_1185",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.05,
+    "reviewCount": 168,
+    "tags": [
+      "bitter",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_138",
+    "name": "Signature Drink 138",
+    "category": "liqueur",
+    "abv": 25.0,
+    "producerId": "producer_1271",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.88,
+    "reviewCount": 53,
+    "tags": [
+      "light",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_139",
+    "name": "Signature Drink 139",
+    "category": "beer",
+    "abv": 17.6,
+    "producerId": "producer_304",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.89,
+    "reviewCount": 103,
+    "tags": [
+      "classic",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_140",
+    "name": "Signature Drink 140",
+    "category": "cocktail",
+    "abv": 25.8,
+    "producerId": "producer_562",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.12,
+    "reviewCount": 85,
+    "tags": [
+      "classic",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_141",
+    "name": "Signature Drink 141",
+    "category": "spirit",
+    "abv": 21.5,
+    "producerId": "producer_935",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.23,
+    "reviewCount": 321,
+    "tags": [
+      "dry",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_142",
+    "name": "Signature Drink 142",
+    "category": "liqueur",
+    "abv": 21.8,
+    "producerId": "producer_879",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.78,
+    "reviewCount": 338,
+    "tags": [
+      "fruity",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_143",
+    "name": "Signature Drink 143",
+    "category": "cocktail",
+    "abv": 25.4,
+    "producerId": "producer_623",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.77,
+    "reviewCount": 133,
+    "tags": [
+      "sweet",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_144",
+    "name": "Signature Drink 144",
+    "category": "spirit",
+    "abv": 11.7,
+    "producerId": "producer_935",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.64,
+    "reviewCount": 338,
+    "tags": [
+      "strong",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_145",
+    "name": "Signature Drink 145",
+    "category": "wine",
+    "abv": 35.4,
+    "producerId": "producer_1142",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.13,
+    "reviewCount": 377,
+    "tags": [
+      "dry",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_146",
+    "name": "Signature Drink 146",
+    "category": "wine",
+    "abv": 32.8,
+    "producerId": "producer_901",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.06,
+    "reviewCount": 220,
+    "tags": [
+      "bitter",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_147",
+    "name": "Signature Drink 147",
+    "category": "beer",
+    "abv": 10.6,
+    "producerId": "producer_1307",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.45,
+    "reviewCount": 278,
+    "tags": [
+      "sweet",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_148",
+    "name": "Signature Drink 148",
+    "category": "cocktail",
+    "abv": 26.2,
+    "producerId": "producer_901",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.12,
+    "reviewCount": 373,
+    "tags": [
+      "classic",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_149",
+    "name": "Signature Drink 149",
+    "category": "spirit",
+    "abv": 29.3,
+    "producerId": "producer_1056",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.41,
+    "reviewCount": 78,
+    "tags": [
+      "dry",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_150",
+    "name": "Signature Drink 150",
+    "category": "cocktail",
+    "abv": 14.7,
+    "producerId": "producer_255",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.3,
+    "reviewCount": 393,
+    "tags": [
+      "classic",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_151",
+    "name": "Signature Drink 151",
+    "category": "wine",
+    "abv": 19.8,
+    "producerId": "producer_1307",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.84,
+    "reviewCount": 243,
+    "tags": [
+      "light",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_152",
+    "name": "Signature Drink 152",
+    "category": "cocktail",
+    "abv": 28.5,
+    "producerId": "producer_812",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.18,
+    "reviewCount": 179,
+    "tags": [
+      "sweet",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_153",
+    "name": "Signature Drink 153",
+    "category": "wine",
+    "abv": 36.8,
+    "producerId": "producer_210",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.6,
+    "reviewCount": 274,
+    "tags": [
+      "light",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_154",
+    "name": "Signature Drink 154",
+    "category": "beer",
+    "abv": 29.7,
+    "producerId": "producer_670",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.95,
+    "reviewCount": 236,
+    "tags": [
+      "light",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_155",
+    "name": "Signature Drink 155",
+    "category": "beer",
+    "abv": 30.8,
+    "producerId": "producer_1047",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.51,
+    "reviewCount": 199,
+    "tags": [
+      "fruity",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_156",
+    "name": "Signature Drink 156",
+    "category": "wine",
+    "abv": 10.2,
+    "producerId": "producer_62",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.52,
+    "reviewCount": 297,
+    "tags": [
+      "dry",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_157",
+    "name": "Signature Drink 157",
+    "category": "cocktail",
+    "abv": 31.2,
+    "producerId": "producer_1151",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.25,
+    "reviewCount": 324,
+    "tags": [
+      "bitter",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_158",
+    "name": "Signature Drink 158",
+    "category": "spirit",
+    "abv": 19.0,
+    "producerId": "producer_1264",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.71,
+    "reviewCount": 307,
+    "tags": [
+      "light",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_159",
+    "name": "Signature Drink 159",
+    "category": "spirit",
+    "abv": 37.3,
+    "producerId": "producer_481",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.62,
+    "reviewCount": 98,
+    "tags": [
+      "bitter",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_160",
+    "name": "Signature Drink 160",
+    "category": "spirit",
+    "abv": 19.6,
+    "producerId": "producer_1047",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.14,
+    "reviewCount": 382,
+    "tags": [
+      "dry",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_161",
+    "name": "Signature Drink 161",
+    "category": "liqueur",
+    "abv": 25.5,
+    "producerId": "producer_170",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.12,
+    "reviewCount": 240,
+    "tags": [
+      "bitter",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_162",
+    "name": "Signature Drink 162",
+    "category": "wine",
+    "abv": 38.9,
+    "producerId": "producer_1142",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.88,
+    "reviewCount": 353,
+    "tags": [
+      "fruity",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_163",
+    "name": "Signature Drink 163",
+    "category": "spirit",
+    "abv": 5.5,
+    "producerId": "producer_879",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.52,
+    "reviewCount": 329,
+    "tags": [
+      "sweet",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_164",
+    "name": "Signature Drink 164",
+    "category": "spirit",
+    "abv": 14.2,
+    "producerId": "producer_1075",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.01,
+    "reviewCount": 136,
+    "tags": [
+      "strong",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_165",
+    "name": "Signature Drink 165",
+    "category": "spirit",
+    "abv": 15.5,
+    "producerId": "producer_1307",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.74,
+    "reviewCount": 132,
+    "tags": [
+      "light",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_166",
+    "name": "Signature Drink 166",
+    "category": "liqueur",
+    "abv": 25.2,
+    "producerId": "producer_901",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.39,
+    "reviewCount": 387,
+    "tags": [
+      "dry",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_167",
+    "name": "Signature Drink 167",
+    "category": "cocktail",
+    "abv": 22.3,
+    "producerId": "producer_810",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.0,
+    "reviewCount": 110,
+    "tags": [
+      "fruity",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_168",
+    "name": "Signature Drink 168",
+    "category": "spirit",
+    "abv": 27.6,
+    "producerId": "producer_1056",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.05,
+    "reviewCount": 182,
+    "tags": [
+      "strong",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_169",
+    "name": "Signature Drink 169",
+    "category": "beer",
+    "abv": 13.3,
+    "producerId": "producer_1151",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.94,
+    "reviewCount": 244,
+    "tags": [
+      "classic",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_170",
+    "name": "Signature Drink 170",
+    "category": "beer",
+    "abv": 21.1,
+    "producerId": "producer_670",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.51,
+    "reviewCount": 196,
+    "tags": [
+      "sweet",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_171",
+    "name": "Signature Drink 171",
+    "category": "liqueur",
+    "abv": 20.7,
+    "producerId": "producer_1271",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.14,
+    "reviewCount": 231,
+    "tags": [
+      "classic",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_172",
+    "name": "Signature Drink 172",
+    "category": "wine",
+    "abv": 24.9,
+    "producerId": "producer_210",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.49,
+    "reviewCount": 233,
+    "tags": [
+      "strong",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_173",
+    "name": "Signature Drink 173",
+    "category": "beer",
+    "abv": 13.6,
+    "producerId": "producer_1047",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.02,
+    "reviewCount": 55,
+    "tags": [
+      "strong",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_174",
+    "name": "Signature Drink 174",
+    "category": "cocktail",
+    "abv": 7.1,
+    "producerId": "producer_670",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.72,
+    "reviewCount": 88,
+    "tags": [
+      "strong",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_175",
+    "name": "Signature Drink 175",
+    "category": "liqueur",
+    "abv": 25.8,
+    "producerId": "producer_1064",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.37,
+    "reviewCount": 297,
+    "tags": [
+      "light",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_176",
+    "name": "Signature Drink 176",
+    "category": "spirit",
+    "abv": 33.2,
+    "producerId": "producer_1221",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.73,
+    "reviewCount": 337,
+    "tags": [
+      "sweet",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_177",
+    "name": "Signature Drink 177",
+    "category": "wine",
+    "abv": 38.0,
+    "producerId": "producer_901",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.42,
+    "reviewCount": 28,
+    "tags": [
+      "sweet",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_178",
+    "name": "Signature Drink 178",
+    "category": "liqueur",
+    "abv": 36.7,
+    "producerId": "producer_304",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.7,
+    "reviewCount": 164,
+    "tags": [
+      "fruity",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_179",
+    "name": "Signature Drink 179",
+    "category": "spirit",
+    "abv": 22.6,
+    "producerId": "producer_266",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.52,
+    "reviewCount": 127,
+    "tags": [
+      "dry",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_180",
+    "name": "Signature Drink 180",
+    "category": "wine",
+    "abv": 20.1,
+    "producerId": "producer_1084",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.29,
+    "reviewCount": 13,
+    "tags": [
+      "bitter",
+      "fruity"
+    ]
+  },
+  {
+    "id": "drink_181",
+    "name": "Signature Drink 181",
+    "category": "wine",
+    "abv": 10.4,
+    "producerId": "producer_623",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.47,
+    "reviewCount": 305,
+    "tags": [
+      "strong",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_182",
+    "name": "Signature Drink 182",
+    "category": "wine",
+    "abv": 15.0,
+    "producerId": "producer_884",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.61,
+    "reviewCount": 30,
+    "tags": [
+      "bitter",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_183",
+    "name": "Signature Drink 183",
+    "category": "liqueur",
+    "abv": 5.5,
+    "producerId": "producer_39",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.15,
+    "reviewCount": 342,
+    "tags": [
+      "dry",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_184",
+    "name": "Signature Drink 184",
+    "category": "liqueur",
+    "abv": 28.5,
+    "producerId": "producer_1075",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.82,
+    "reviewCount": 166,
+    "tags": [
+      "strong",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_185",
+    "name": "Signature Drink 185",
+    "category": "spirit",
+    "abv": 38.1,
+    "producerId": "producer_236",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.67,
+    "reviewCount": 41,
+    "tags": [
+      "strong",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_186",
+    "name": "Signature Drink 186",
+    "category": "beer",
+    "abv": 19.2,
+    "producerId": "producer_447",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.96,
+    "reviewCount": 386,
+    "tags": [
+      "sweet",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_187",
+    "name": "Signature Drink 187",
+    "category": "cocktail",
+    "abv": 8.0,
+    "producerId": "producer_727",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.76,
+    "reviewCount": 310,
+    "tags": [
+      "strong",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_188",
+    "name": "Signature Drink 188",
+    "category": "cocktail",
+    "abv": 29.3,
+    "producerId": "producer_483",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.87,
+    "reviewCount": 177,
+    "tags": [
+      "light",
+      "strong"
+    ]
+  },
+  {
+    "id": "drink_189",
+    "name": "Signature Drink 189",
+    "category": "spirit",
+    "abv": 29.7,
+    "producerId": "producer_1047",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.93,
+    "reviewCount": 40,
+    "tags": [
+      "light",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_190",
+    "name": "Signature Drink 190",
+    "category": "wine",
+    "abv": 11.6,
+    "producerId": "producer_1099",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.05,
+    "reviewCount": 317,
+    "tags": [
+      "sweet",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_191",
+    "name": "Signature Drink 191",
+    "category": "wine",
+    "abv": 33.7,
+    "producerId": "producer_879",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.85,
+    "reviewCount": 128,
+    "tags": [
+      "dry",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_192",
+    "name": "Signature Drink 192",
+    "category": "cocktail",
+    "abv": 13.9,
+    "producerId": "producer_1220",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.49,
+    "reviewCount": 180,
+    "tags": [
+      "sweet",
+      "bitter"
+    ]
+  },
+  {
+    "id": "drink_193",
+    "name": "Signature Drink 193",
+    "category": "beer",
+    "abv": 31.5,
+    "producerId": "producer_884",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.58,
+    "reviewCount": 290,
+    "tags": [
+      "fruity",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_194",
+    "name": "Signature Drink 194",
+    "category": "cocktail",
+    "abv": 18.7,
+    "producerId": "producer_1221",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.44,
+    "reviewCount": 78,
+    "tags": [
+      "bitter",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_195",
+    "name": "Signature Drink 195",
+    "category": "wine",
+    "abv": 20.8,
+    "producerId": "producer_481",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.61,
+    "reviewCount": 298,
+    "tags": [
+      "bitter",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_196",
+    "name": "Signature Drink 196",
+    "category": "liqueur",
+    "abv": 18.6,
+    "producerId": "producer_170",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 4.69,
+    "reviewCount": 84,
+    "tags": [
+      "sweet",
+      "light"
+    ]
+  },
+  {
+    "id": "drink_197",
+    "name": "Signature Drink 197",
+    "category": "wine",
+    "abv": 18.4,
+    "producerId": "producer_1307",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.75,
+    "reviewCount": 56,
+    "tags": [
+      "bitter",
+      "dry"
+    ]
+  },
+  {
+    "id": "drink_198",
+    "name": "Signature Drink 198",
+    "category": "liqueur",
+    "abv": 32.1,
+    "producerId": "producer_765",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.62,
+    "reviewCount": 40,
+    "tags": [
+      "dry",
+      "classic"
+    ]
+  },
+  {
+    "id": "drink_199",
+    "name": "Signature Drink 199",
+    "category": "spirit",
+    "abv": 4.6,
+    "producerId": "producer_447",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.76,
+    "reviewCount": 257,
+    "tags": [
+      "dry",
+      "sweet"
+    ]
+  },
+  {
+    "id": "drink_200",
+    "name": "Signature Drink 200",
+    "category": "liqueur",
+    "abv": 29.7,
+    "producerId": "producer_266",
+    "description": "Generated drink for drinksreviews dataset.",
+    "avgRating": 3.86,
+    "reviewCount": 329,
+    "tags": [
+      "light",
+      "fruity"
+    ]
+  }
+]

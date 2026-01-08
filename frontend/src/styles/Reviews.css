@@ -1,24 +1,153 @@
-.review-container {
-    display: flex;
+/* Reviews.css - aligned with Profile.css */
 
-    flex-direction: row;
-    padding: 0cqh;
-    margin: 0;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    background-color: #e4e4e4;
+.reviews-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 180, 216, 0.18), transparent 55%),
+              radial-gradient(900px 700px at 80% 20%, rgba(255, 183, 3, 0.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+  display: flex;
+  justify-content: center;
+  color: #e9eefc;
 }
 
-.review-item {
-    width: 20vw;
-    background-color: white;
-    padding: 16px;
-    margin-right: 16px;
-    border-radius: 8px;
+.reviews-card {
+  width: 100%;
+  max-width: 900px;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
 }
 
-.product-info {
-    background-color: #e4e4e4;
-    padding: 16px;
-    border-radius: 8px;
+.reviews-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.reviews-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: rgba(233, 238, 252, 0.95);
+}
+
+.reviews-count {
+  font-size: 12px;
+  font-weight: 900;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.reviews-list {
+  margin-top: 16px;
+  max-height: 520px;
+  overflow: auto;
+  padding-right: 6px;
+  display: grid;
+  gap: 10px;
+}
+
+.review-row {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-row:hover {
+  border-color: rgba(0, 180, 216, 0.25);
+  background: rgba(10, 15, 26, 0.45);
+}
+
+.review-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.review-name {
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(233, 238, 252, 0.95);
+}
+
+/* “bere” mică, fără imagini: doar un emoji/icon consistent */
+.review-beer-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 183, 3, 0.12);
+  border: 1px solid rgba(255, 183, 3, 0.25);
+  font-size: 15px;
+}
+
+.review-rating {
+  font-weight: 900;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  background: rgba(255, 183, 3, 0.18);
+  border: 1px solid rgba(255, 183, 3, 0.35);
+  color: rgba(255, 243, 206, 0.95);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* “steaua” care se mișcă la hover */
+.review-rating .star {
+  display: inline-block;
+  transform-origin: 50% 50%;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.review-row:hover .review-rating .star {
+  transform: rotate(-14deg) scale(1.12);
+  filter: drop-shadow(0 0 8px rgba(255, 183, 3, 0.35));
+}
+
+.review-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(233, 238, 252, 0.85);
+}
+
+.review-tags {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 180, 216, 0.18);
+  border: 1px solid rgba(0, 180, 216, 0.35);
+  color: rgba(233, 238, 252, 0.9);
+}
+
+.reviews-empty {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(10, 15, 26, 0.25);
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  color: rgba(233, 238, 252, 0.7);
+  font-weight: 800;
 }

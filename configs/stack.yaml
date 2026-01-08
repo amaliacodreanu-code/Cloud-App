@@ -21,10 +21,8 @@ services:
     environment:
       DB_API_URL: http://database-service:5000
       JWT_SECRET_KEY_FILE: /run/secrets/jwt_secret_key
-      OPENAI_API_KEY_FILE: /run/secrets/openai_api_key
     secrets:
       - jwt_secret_key
-      - openai_api_key
     deploy:
       replicas: 2
     networks:
@@ -46,7 +44,7 @@ services:
   database-service:
     image: registry.gitlab.com/idp9402113/database:master
     environment:
-      MONGODB_HOST: mongodb://root:example@mongo:27017/beerreview?authSource=admin
+    MONGODB_HOST: mongodb://root:example@mongo:27017/drinksreview?authSource=admin
     deploy:
       replicas: 2
     networks:
@@ -58,6 +56,8 @@ services:
 
   mongo:
     image: mongo:latest
+    ports:
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -68,6 +68,7 @@ services:
         constraints: [node.role == manager]
     networks:
       - database
+
 
   mongo-express:
     image: mongo-express:latest
@@ -181,6 +182,4 @@ networks:
 
 secrets:
   jwt_secret_key:
-    external: true
-  openai_api_key:
     external: true

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Badge, Button, Form, Modal, Container, Alert, Spinner } from "react-bootstrap";
 import CustomRating from "./CustomRaiting";
 
-function Review({ drinkId, onSuccess }) {
+export default function ProducerReview({ producerId, onSuccess }) {
   const [show, setShow] = useState(false);
 
   const [rating, setRating] = useState(0);
@@ -26,25 +26,6 @@ function Review({ drinkId, onSuccess }) {
     []
   );
 
-  const handleClose = () => {
-    setShow(false);
-    setErrorMsg("");
-  };
-
-  const handleShow = async () => {
-    setErrorMsg("");
-    setShow(true);
-    await loadExisting();
-  };
-
-  const handleRatingChange = (value) => setRating(value);
-
-  const handleBadgeClick = (profile) => {
-    setSelectedProfiles((prev) =>
-      prev.includes(profile) ? prev.filter((p) => p !== profile) : [...prev, profile]
-    );
-  };
-
   const safeJson = async (res) => {
     const text = await res.text();
     try {
@@ -55,24 +36,23 @@ function Review({ drinkId, onSuccess }) {
   };
 
   const loadExisting = async () => {
-    if (!token || !drinkId) return;
+    if (!token || !producerId) return;
 
     setLoadingExisting(true);
     setExistingReviewId(null);
 
     try {
-      const res = await fetch(`${apiUrl}/reviews`, {
+      const res = await fetch(`${apiUrl}/producer-reviews`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status} while loading reviews`);
+      if (!res.ok) throw new Error(`HTTP ${res.status} while loading producer reviews`);
 
       const data = await safeJson(res);
       const arr = Array.isArray(data) ? data : [];
 
-      // backend /reviews returnează: { _id, rating, review, tastes, drink, producer ... }
-      const existing = arr.find((r) => String(r?.drink?.id ?? r?.drink_id) === String(drinkId));
+      const existing = arr.find((r) => String(r?.producer_id ?? r?.producer?.id) === String(producerId));
 
       if (existing) {
         setExistingReviewId(existing._id);
@@ -80,17 +60,32 @@ function Review({ drinkId, onSuccess }) {
         setMessage(existing.review || "");
         setSelectedProfiles(Array.isArray(existing.tastes) ? existing.tastes : []);
       } else {
-        // reset pentru review nou
         setRating(0);
         setMessage("");
         setSelectedProfiles([]);
       }
     } catch (e) {
       console.error(e);
-      // nu blocăm UI-ul; doar nu putem preîncărca
     } finally {
       setLoadingExisting(false);
     }
+  };
+
+  const handleShow = async () => {
+    setErrorMsg("");
+    setShow(true);
+    await loadExisting();
+  };
+
+  const handleClose = () => {
+    setShow(false);
+    setErrorMsg("");
+  };
+
+  const handleBadgeClick = (profile) => {
+    setSelectedProfiles((prev) =>
+      prev.includes(profile) ? prev.filter((p) => p !== profile) : [...prev, profile]
+    );
   };
 
   const deleteExisting = async () => {
@@ -98,12 +93,12 @@ function Review({ drinkId, onSuccess }) {
 
     setErrorMsg("");
     try {
-      const res = await fetch(`${apiUrl}/reviews/${existingReviewId}`, {
+      const res = await fetch(`${apiUrl}/producer-reviews/${existingReviewId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status} while deleting review`);
+      if (!res.ok) throw new Error(`HTTP ${res.status} while deleting producer review`);
 
       setExistingReviewId(null);
       setRating(0);
@@ -124,8 +119,8 @@ function Review({ drinkId, onSuccess }) {
       setErrorMsg("Trebuie să fii logat ca să adaugi/modifici o recenzie.");
       return;
     }
-    if (!drinkId) {
-      setErrorMsg("Lipsește drinkId.");
+    if (!producerId) {
+      setErrorMsg("Lipsește producerId.");
       return;
     }
     if (rating <= 0) {
@@ -134,23 +129,22 @@ function Review({ drinkId, onSuccess }) {
     }
 
     try {
-      // dacă există deja review, îl ștergem întâi (ca să nu lovești regula de duplicate)
       if (existingReviewId) {
-        const del = await fetch(`${apiUrl}/reviews/${existingReviewId}`, {
+        const del = await fetch(`${apiUrl}/producer-reviews/${existingReviewId}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
         });
-        if (!del.ok) throw new Error(`HTTP ${del.status} while deleting old review`);
+        if (!del.ok) throw new Error(`HTTP ${del.status} while deleting old producer review`);
       }
 
       const payload = {
-        drink_id: drinkId,
+        producer_id: producerId,
         rating,
-        tastes: selectedProfiles, // poate fi [] după fix-ul din backend
+        tastes: selectedProfiles,
         review: message,
       };
 
-      const res = await fetch(`${apiUrl}/reviews`, {
+      const res = await fetch(`${apiUrl}/producer-reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -168,22 +162,21 @@ function Review({ drinkId, onSuccess }) {
       if (typeof onSuccess === "function") onSuccess();
     } catch (e) {
       console.error(e);
-      setErrorMsg("Nu pot salva review-ul. Verifică Network pentru detalii.");
+      setErrorMsg("Nu pot salva review-ul.");
     }
   };
 
-  // text buton
-  const mainLabel = existingReviewId ? "Edit Review" : "Add Review";
+  const mainLabel = existingReviewId ? "Edit Producer Review" : "Add Producer Review";
 
   return (
     <>
-      <Button variant="info" onClick={handleShow} disabled={!drinkId}>
+      <Button variant="info" onClick={handleShow} disabled={!producerId}>
         {mainLabel}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{existingReviewId ? "Edit your review" : "Write your review"}</Modal.Title>
+          <Modal.Title>{existingReviewId ? "Edit your producer review" : "Write a producer review"}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -197,16 +190,15 @@ function Review({ drinkId, onSuccess }) {
           ) : null}
 
           <Form>
-            <Form.Group className="mb-3" controlId="ratingInput">
+            <Form.Group className="mb-3">
               <Form.Label>Rating</Form.Label>
               <div>
-                <CustomRating rating={rating} onChange={handleRatingChange} />
+                <CustomRating rating={rating} onChange={setRating} />
               </div>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="tasteProfileInput">
+            <Form.Group className="mb-3">
               <Form.Label>Taste profile</Form.Label>
-
               <div>
                 {tasteProfiles
                   .reduce((acc, profile, idx) => {
@@ -215,31 +207,12 @@ function Review({ drinkId, onSuccess }) {
                     return acc;
                   }, [])
                   .map((row, rowIndex) => (
-                    <Container
-                      key={rowIndex}
-                      className="d-flex justify-content-start"
-                      style={{ gap: "10px" }}
-                    >
+                    <Container key={rowIndex} className="d-flex justify-content-start" style={{ gap: "10px" }}>
                       {row.map((profile) => (
                         <Badge
                           key={profile}
                           pill
-                          bg={
-                            profile === "Sweet"
-                              ? "primary"
-                              : profile === "Sour"
-                              ? "dark"
-                              : profile === "Bitter"
-                              ? "warning"
-                              : profile === "Malt"
-                              ? "danger"
-                              : profile === "Smoke"
-                              ? "info"
-                              : "success"
-                          }
-                          className={`taste-badge ${
-                            selectedProfiles.includes(profile) ? "selected" : ""
-                          }`}
+                          bg="info"
                           onClick={() => handleBadgeClick(profile)}
                           style={{
                             cursor: "pointer",
@@ -247,6 +220,7 @@ function Review({ drinkId, onSuccess }) {
                             padding: "10px 15px",
                             marginTop: "15px",
                             userSelect: "none",
+                            opacity: selectedProfiles.includes(profile) ? 1 : 0.6,
                           }}
                         >
                           {profile}
@@ -257,7 +231,7 @@ function Review({ drinkId, onSuccess }) {
               </div>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="messageInput">
+            <Form.Group className="mb-3">
               <Form.Label>Message</Form.Label>
               <Form.Control
                 placeholder="Share your thoughts"
@@ -292,5 +266,3 @@ function Review({ drinkId, onSuccess }) {
     </>
   );
 }
-
-export default Review;

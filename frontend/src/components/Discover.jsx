@@ -1,208 +1,305 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CustomNavbar from "./Navbar";
-import { Button, Card, Col, Container, Row, Spinner } from "react-bootstrap";
-import "../styles/Discover.css";
-import BeerModal from "./BeerModal";
+import Review from "./Review";
+import ProducerReview from "./ProducerReview";
+import "../styles/DiscoverProfile.css";
 
-const Discover = () => {
-  const [breweries, setBreweries] = useState([]);
-  const [beers, setBeers] = useState([]);
+export default function Discover() {
+  const [activeTab, setActiveTab] = useState("drinks"); // "drinks" | "producers"
+  const [drinks, setDrinks] = useState([]);
+  const [producers, setProducers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [show, setShow] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [currentBreweryPage, setCurrentBreweryPage] = useState(1);
-  const [currentBeerPage, setCurrentBeerPage] = useState(1);
-  const itemsPerPage = 10;
-  const pageButtonLimit = 5; // Number of page buttons to show at once
-  const apiUrl = window.__ENV__["VITE_API_URL"];
 
-  const handleClose = () => setShow(false);
-  const handleShow = (brewery) => {
-    setSelectedItem(brewery);
-    setShow(true);
+  const [selectedDrink, setSelectedDrink] = useState(null);
+  const [selectedProducer, setSelectedProducer] = useState(null);
+
+  const [error, setError] = useState("");
+
+  const token = localStorage.getItem("token");
+
+  const apiUrl =
+    window.__ENV__?.VITE_API_URL ??
+    import.meta.env.VITE_API_URL ??
+    `${window.location.protocol}//${window.location.hostname}:8080/api`;
+
+  const safeJson = async (res) => {
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      throw new Error(`Expected JSON, got: ${text.slice(0, 80)}...`);
+    }
+  };
+
+  const fetchJson = async (url) => {
+    const res = await fetch(url, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    return safeJson(res);
   };
 
   useEffect(() => {
-    const fetchBreweries = fetch(`${apiUrl}/breweries`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json());
+    let mounted = true;
+    setLoading(true);
+    setError("");
 
-    const fetchBeers = fetch(`${apiUrl}/beers`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json());
+    Promise.all([fetchJson(`${apiUrl}/drinks`), fetchJson(`${apiUrl}/producers`)])
+      .then(([d, p]) => {
+        if (!mounted) return;
 
-    Promise.all([fetchBreweries, fetchBeers])
-      .then(([breweriesData, beersData]) => {
-        setBreweries(breweriesData);
-        setBeers(beersData);
+        const dd = Array.isArray(d) ? d : [];
+        const pp = Array.isArray(p) ? p : [];
+
+        setDrinks(dd);
+        setProducers(pp);
+
+        setSelectedDrink(dd[0] ?? null);
+        setSelectedProducer(pp[0] ?? null);
+
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-        setLoading(false); // Stop loading even if there's an error
+      .catch((e) => {
+        console.error(e);
+        if (!mounted) return;
+        setError(e?.message || "Request failed");
+        setLoading(false);
       });
-  }, []);
 
-  const handleBreweryPageChange = (newPage) => {
-    setCurrentBreweryPage(newPage);
-  };
+    return () => {
+      mounted = false;
+    };
+  }, [apiUrl]);
 
-  const handleBeerPageChange = (newPage) => {
-    setCurrentBeerPage(newPage);
-  };
+  // reset selection correctly when switching tabs
+  useEffect(() => {
+    if (activeTab === "drinks") {
+      if (!selectedDrink && drinks.length) setSelectedDrink(drinks[0]);
+    } else {
+      if (!selectedProducer && producers.length) setSelectedProducer(producers[0]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTab, drinks, producers]);
 
-  const displayedBreweries = breweries.slice(
-    (currentBreweryPage - 1) * itemsPerPage,
-    currentBreweryPage * itemsPerPage
+  const listItems = useMemo(
+    () => (activeTab === "drinks" ? drinks : producers),
+    [activeTab, drinks, producers]
   );
 
-  const displayedBeers = beers.slice(
-    (currentBeerPage - 1) * itemsPerPage,
-    currentBeerPage * itemsPerPage
-  );
+  const selected = activeTab === "drinks" ? selectedDrink : selectedProducer;
 
-  const renderPaginationButtons = (
-    currentPage,
-    totalItems,
-    handlePageChange
-  ) => {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    const startPage = Math.max(
-      1,
-      currentPage - Math.floor(pageButtonLimit / 2)
-    );
-    const endPage = Math.min(totalPages, startPage + pageButtonLimit - 1);
+  const pick = (item) => {
+    if (activeTab === "drinks") setSelectedDrink(item);
+    else setSelectedProducer(item);
+  };
 
-    const pageButtons = [];
-    for (let i = startPage; i <= endPage; i++) {
-      pageButtons.push(
-        <Button
-          key={i}
-          variant="dark"
-          size="sm"
-          onClick={() => handlePageChange(i)}
-          className="page-button"
-        >
-          {i}
-        </Button>
-      );
+  const isActive = (item) => {
+    if (activeTab === "drinks") return String(item?.id) === String(selectedDrink?.id);
+    return String(item?.id) === String(selectedProducer?.id);
+  };
+
+  const drinkId = selectedDrink?.id ?? null;
+
+  // producer id for the selected drink (NOT selectedProducer)
+  const drinkProducerId =
+    selectedDrink?.producerId ??
+    selectedDrink?.producer_id ??
+    selectedDrink?.producer?.id ??
+    null;
+
+  const addFavorite = async () => {
+    if (!token) {
+      alert("Trebuie să fii logat ca să adaugi la favorite.");
+      return;
+    }
+    if (!drinkId) return;
+
+    const res = await fetch(`${apiUrl}/favorites`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ drink_id: drinkId }),
+    });
+
+    if (!res.ok) {
+      const t = await res.text().catch(() => "");
+      alert(`Nu pot adăuga la favorite. (${res.status}) ${t.slice(0, 120)}`);
+      return;
     }
 
-    return (
-      <div className="pagination">
-        <Button
-          variant="dark"
-          size="sm"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </Button>
-        {pageButtons}
-        <Button
-          variant="dark"
-          size="sm"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </Button>
-      </div>
-    );
+    alert("Adăugat la favorite.");
   };
 
   return (
     <>
       <CustomNavbar />
-      <Container
-        style={{ width: "70vw", backgroundColor: "white", padding: "2rem" }}
-      >
-        {loading ? (
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{ height: "100vh" }}
-          >
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+
+      <div className="dp-page">
+        <div className="dp-card">
+          <div className="dp-header">
+            <div className="dp-titleblock">
+              <div className="dp-title">Discover</div>
+              <div className="dp-subtitle">
+                {activeTab === "drinks"
+                  ? `${drinks.length} drinks`
+                  : `${producers.length} producers`}
+              </div>
+            </div>
+
+            <div className="dp-tabs">
+              <button
+                className={`dp-tab ${activeTab === "drinks" ? "active" : ""}`}
+                onClick={() => setActiveTab("drinks")}
+                type="button"
+              >
+                Drinks
+              </button>
+              <button
+                className={`dp-tab ${activeTab === "producers" ? "active" : ""}`}
+                onClick={() => setActiveTab("producers")}
+                type="button"
+              >
+                Producers
+              </button>
+            </div>
           </div>
-        ) : (
-          <Row>
-            <Col className="list">
-              <h1>Breweries</h1>
-              <p>Top Breweries</p>
-              <div className="item-container">
-                {displayedBreweries.map((brewery, index) => {
-                  return (
-                    <Card style={{ width: "18rem" }} key={brewery.id}>
-                      <Card.Body>
-                        <Card.Title>
-                          {index + 1}. {brewery.name}
-                        </Card.Title>
-                        <Card.Text>{brewery.city}</Card.Text>
-                        <Card.Text>{brewery.state}</Card.Text>
-                        <Card.Text>{brewery.country}</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
+
+          {loading ? (
+            <div className="dp-loading">Loading…</div>
+          ) : error ? (
+            <div className="dp-error">
+              <div className="dp-error-title">Nu pot încărca datele.</div>
+              <div className="dp-error-body">{error}</div>
+              <div className="dp-error-body">API: {apiUrl}</div>
+            </div>
+          ) : (
+            <div className="dp-body">
+              <div className="dp-list">
+                <div className="dp-list-head">
+                  <div className="dp-list-title">
+                    {activeTab === "drinks" ? "Drinks" : "Producers"}
+                  </div>
+                  <div className="dp-list-count">{listItems.length}</div>
+                </div>
+
+                <div className="dp-list-scroll">
+                  {listItems.map((item, idx) => (
+                    <button
+                      key={`${activeTab}-${item?.id ?? "x"}-${idx}`}
+                      className={`dp-list-item ${isActive(item) ? "active" : ""}`}
+                      onClick={() => pick(item)}
+                      type="button"
+                    >
+                      <div className="dp-item-name">{item?.name || "Unnamed"}</div>
+
+                      {activeTab === "drinks" ? (
+                        <div className="dp-item-meta">
+                          <span>{item?.category || "—"}</span>
+                          <span className="dp-dot">•</span>
+                          <span>
+                            {item?.abv != null && item?.abv !== ""
+                              ? `${Number(item.abv).toFixed(1)}%`
+                              : "ABV: N/A"}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="dp-item-meta">
+                          <span>{item?.type || "—"}</span>
+                          {item?.country ? (
+                            <>
+                              <span className="dp-dot">•</span>
+                              <span>{item.country}</span>
+                            </>
+                          ) : null}
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
               </div>
-              {renderPaginationButtons(
-                currentBreweryPage,
-                breweries.length,
-                handleBreweryPageChange
-              )}
-            </Col>
-            <Col className="list">
-              <h1>Beers</h1>
-              <p>Top Beers</p>
-              <div className="item-container">
-                {displayedBeers.map((beer, index) => {
-                  return (
-                    <Card style={{ width: "18rem" }} key={beer.id}>
-                      <Card.Body>
-                        <Card.Title>
-                          {index + 1}. {beer.name}
-                        </Card.Title>
-                        <Card.Text>{beer.cat_name}</Card.Text>
-                        <Card.Text>{beer.style_name}</Card.Text>
-                        <Card.Text>
-                          {beer.abv ? parseFloat(beer.abv).toFixed(1) : "N/A"}%
-                          alcohol
-                        </Card.Text>
-                        <Button
-                          variant="primary"
-                          onClick={() => {
-                            handleShow(beer);
-                          }}
-                        >
-                          Details
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
+
+              <div className="dp-detail">
+                {!selected ? (
+                  <div className="dp-empty">Selectează un element din listă.</div>
+                ) : activeTab === "drinks" ? (
+                  <>
+                    <div className="dp-detail-head">
+                      <div className="dp-detail-title">{selectedDrink?.name}</div>
+
+                      <div className="dp-detail-actions">
+                        <button className="dp-btn" onClick={addFavorite} type="button">
+                          Add to favorites
+                        </button>
+
+                        {/* Review for drink */}
+                        <Review drinkId={drinkId} onSuccess={() => {}} />
+
+                        {/* Optional: review for producer of this drink */}
+                        {drinkProducerId ? (
+                          <ProducerReview producerId={drinkProducerId} onSuccess={() => {}} />
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <div className="dp-section">
+                      <div className="dp-section-title">Details</div>
+                      <div className="dp-kv">
+                        <div className="dp-k">Category</div>
+                        <div className="dp-v">{selectedDrink?.category || "—"}</div>
+
+                        <div className="dp-k">ABV</div>
+                        <div className="dp-v">
+                          {selectedDrink?.abv != null && selectedDrink?.abv !== ""
+                            ? `${Number(selectedDrink.abv).toFixed(1)}%`
+                            : "—"}
+                        </div>
+
+                        <div className="dp-k">Producer</div>
+                        <div className="dp-v">{selectedDrink?.producer?.name || "—"}</div>
+                      </div>
+                    </div>
+
+                    {selectedDrink?.description ? (
+                      <div className="dp-section">
+                        <div className="dp-section-title">Description</div>
+                        <div className="dp-text">{selectedDrink.description}</div>
+                      </div>
+                    ) : null}
+                  </>
+                ) : (
+                  <>
+                    <div className="dp-detail-head">
+                      <div className="dp-detail-title">{selectedProducer?.name}</div>
+
+                      <div className="dp-detail-actions">
+                        {/* Review for producer */}
+                        <ProducerReview producerId={selectedProducer?.id ?? null} onSuccess={() => {}} />
+                      </div>
+                    </div>
+
+                    <div className="dp-section">
+                      <div className="dp-section-title">Details</div>
+                      <div className="dp-kv">
+                        <div className="dp-k">Type</div>
+                        <div className="dp-v">{selectedProducer?.type || "—"}</div>
+
+                        <div className="dp-k">City</div>
+                        <div className="dp-v">{selectedProducer?.city || "—"}</div>
+
+                        <div className="dp-k">Country</div>
+                        <div className="dp-v">{selectedProducer?.country || "—"}</div>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
-              {renderPaginationButtons(
-                currentBeerPage,
-                beers.length,
-                handleBeerPageChange
-              )}
-            </Col>
-          </Row>
-        )}
-      </Container>
-      {selectedItem && (
-        <BeerModal show={show} handleClose={handleClose} beer={selectedItem} />
-      )}
+            </div>
+          )}
+        </div>
+      </div>
     </>
   );
-};
-
-export default Discover;
+}

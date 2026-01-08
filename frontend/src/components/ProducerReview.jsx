@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { Badge, Button, Form, Modal, Container, Alert, Spinner } from "react-bootstrap";
-import CustomRating from "./CustomRaiting";
+import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
+import Rating from "./Rating";
+import "../styles/ReviewModal.css";
 
 export default function ProducerReview({ producerId, onSuccess }) {
   const [show, setShow] = useState(false);
@@ -31,9 +32,24 @@ export default function ProducerReview({ producerId, onSuccess }) {
     try {
       return JSON.parse(text);
     } catch {
-      throw new Error(`Expected JSON, got: ${text.slice(0, 80)}...`);
+      throw new Error(`Expected JSON, got: ${text.slice(0, 120)}...`);
     }
   };
+
+  const resetForm = () => {
+    setExistingReviewId(null);
+    setRating(0);
+    setSelectedProfiles([]);
+    setMessage("");
+  };
+
+  useEffect(() => {
+    // dacă se schimbă producer-ul selectat, închidem și resetăm
+    setShow(false);
+    setErrorMsg("");
+    resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [producerId]);
 
   const loadExisting = async () => {
     if (!token || !producerId) return;
@@ -52,7 +68,9 @@ export default function ProducerReview({ producerId, onSuccess }) {
       const data = await safeJson(res);
       const arr = Array.isArray(data) ? data : [];
 
-      const existing = arr.find((r) => String(r?.producer_id ?? r?.producer?.id) === String(producerId));
+      const existing = arr.find(
+        (r) => String(r?.producer_id ?? r?.producer?.id) === String(producerId)
+      );
 
       if (existing) {
         setExistingReviewId(existing._id);
@@ -72,6 +90,12 @@ export default function ProducerReview({ producerId, onSuccess }) {
   };
 
   const handleShow = async () => {
+    if (!token) {
+      setErrorMsg("Trebuie să fii logat ca să adaugi/modifici o recenzie.");
+      setShow(true);
+      return;
+    }
+
     setErrorMsg("");
     setShow(true);
     await loadExisting();
@@ -82,7 +106,7 @@ export default function ProducerReview({ producerId, onSuccess }) {
     setErrorMsg("");
   };
 
-  const handleBadgeClick = (profile) => {
+  const handleTasteClick = (profile) => {
     setSelectedProfiles((prev) =>
       prev.includes(profile) ? prev.filter((p) => p !== profile) : [...prev, profile]
     );
@@ -98,14 +122,14 @@ export default function ProducerReview({ producerId, onSuccess }) {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status} while deleting producer review`);
+      if (!res.ok) {
+        const t = await res.text().catch(() => "");
+        throw new Error(`HTTP ${res.status}. ${t.slice(0, 120)}`);
+      }
 
-      setExistingReviewId(null);
-      setRating(0);
-      setMessage("");
-      setSelectedProfiles([]);
-
-      if (typeof onSuccess === "function") onSuccess();
+      resetForm();
+      handleClose();
+      onSuccess?.();
     } catch (e) {
       console.error(e);
       setErrorMsg("Nu pot șterge review-ul.");
@@ -127,14 +151,23 @@ export default function ProducerReview({ producerId, onSuccess }) {
       setErrorMsg("Alege un rating.");
       return;
     }
+    if (!selectedProfiles.length) {
+      setErrorMsg("Selectează cel puțin un taste profile.");
+      return;
+    }
 
     try {
+      // “edit” fără PUT: ștergem vechiul review înainte
       if (existingReviewId) {
         const del = await fetch(`${apiUrl}/producer-reviews/${existingReviewId}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
         });
-        if (!del.ok) throw new Error(`HTTP ${del.status} while deleting old producer review`);
+
+        if (!del.ok) {
+          const t = await del.text().catch(() => "");
+          throw new Error(`HTTP ${del.status}. ${t.slice(0, 120)}`);
+        }
       }
 
       const payload = {
@@ -159,7 +192,7 @@ export default function ProducerReview({ producerId, onSuccess }) {
       }
 
       handleClose();
-      if (typeof onSuccess === "function") onSuccess();
+      onSuccess?.();
     } catch (e) {
       console.error(e);
       setErrorMsg("Nu pot salva review-ul.");
@@ -174,9 +207,11 @@ export default function ProducerReview({ producerId, onSuccess }) {
         {mainLabel}
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered className="review-modal">
         <Modal.Header closeButton>
-          <Modal.Title>{existingReviewId ? "Edit your producer review" : "Write a producer review"}</Modal.Title>
+          <Modal.Title>
+            {existingReviewId ? "Edit your producer review" : "Write a producer review"}
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -192,42 +227,21 @@ export default function ProducerReview({ producerId, onSuccess }) {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>Rating</Form.Label>
-              <div>
-                <CustomRating rating={rating} onChange={setRating} />
-              </div>
+              <Rating rating={rating} setRating={setRating} />
             </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Label>Taste profile</Form.Label>
-              <div>
-                {tasteProfiles
-                  .reduce((acc, profile, idx) => {
-                    if (idx % 3 === 0) acc.push([]);
-                    acc[acc.length - 1].push(profile);
-                    return acc;
-                  }, [])
-                  .map((row, rowIndex) => (
-                    <Container key={rowIndex} className="d-flex justify-content-start" style={{ gap: "10px" }}>
-                      {row.map((profile) => (
-                        <Badge
-                          key={profile}
-                          pill
-                          bg="info"
-                          onClick={() => handleBadgeClick(profile)}
-                          style={{
-                            cursor: "pointer",
-                            fontSize: "1rem",
-                            padding: "10px 15px",
-                            marginTop: "15px",
-                            userSelect: "none",
-                            opacity: selectedProfiles.includes(profile) ? 1 : 0.6,
-                          }}
-                        >
-                          {profile}
-                        </Badge>
-                      ))}
-                    </Container>
-                  ))}
+              <div className="review-tastes">
+                {tasteProfiles.map((profile) => (
+                  <span
+                    key={profile}
+                    className={`review-taste ${selectedProfiles.includes(profile) ? "active" : ""}`}
+                    onClick={() => handleTasteClick(profile)}
+                  >
+                    {profile}
+                  </span>
+                ))}
               </div>
             </Form.Group>
 
@@ -244,22 +258,22 @@ export default function ProducerReview({ producerId, onSuccess }) {
           </Form>
         </Modal.Body>
 
-        <Modal.Footer style={{ display: "flex", justifyContent: "space-between" }}>
+        <Modal.Footer className="review-footer">
           <div>
             {existingReviewId ? (
-              <Button variant="danger" onClick={deleteExisting}>
+              <button className="review-btn-delete" onClick={deleteExisting} type="button">
                 Delete
-              </Button>
+              </button>
             ) : null}
           </div>
 
-          <div style={{ display: "flex", gap: 8 }}>
-            <Button variant="secondary" onClick={handleClose}>
+          <div className="review-footer-actions">
+            <button className="review-btn-close" onClick={handleClose} type="button">
               Close
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
+            </button>
+            <button className="review-btn-save" onClick={handleSave} type="button">
               Save
-            </Button>
+            </button>
           </div>
         </Modal.Footer>
       </Modal>

@@ -1,153 +1,142 @@
-import { useEffect, useMemo, useState } from "react";
-import { Badge, Button, Form, Modal, Container, Alert, Spinner } from "react-bootstrap";
-import CustomRating from "./CustomRaiting";
+import { useEffect, useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+import Rating from "./Rating";
+import "../styles/ReviewModal.css";
 
-function Review({ drinkId, onSuccess }) {
+const tasteProfiles = ["Sweet", "Sour", "Bitter", "Malt", "Smoke", "Tart & Funky"];
+
+export default function Review({ drinkId, beerId, onSuccess }) {
+  const id = drinkId ?? beerId;
+
   const [show, setShow] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   const [rating, setRating] = useState(0);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
-  const [message, setMessage] = useState("");
+  const [reviewText, setReviewText] = useState("");
+  const [existingReview, setExistingReview] = useState(null);
 
-  const [errorMsg, setErrorMsg] = useState("");
-  const [loadingExisting, setLoadingExisting] = useState(false);
-
-  const [existingReviewId, setExistingReviewId] = useState(null);
+  const token = localStorage.getItem("token");
 
   const apiUrl =
     window.__ENV__?.VITE_API_URL ??
     import.meta.env.VITE_API_URL ??
     `${window.location.protocol}//${window.location.hostname}:8080/api`;
 
-  const token = localStorage.getItem("token");
-
-  const tasteProfiles = useMemo(
-    () => ["Sweet", "Sour", "Bitter", "Malt", "Smoke", "Tart & Funky"],
-    []
-  );
-
-  const handleClose = () => {
-    setShow(false);
-    setErrorMsg("");
-  };
-
-  const handleShow = async () => {
-    setErrorMsg("");
-    setShow(true);
-    await loadExisting();
-  };
-
-  const handleRatingChange = (value) => setRating(value);
-
-  const handleBadgeClick = (profile) => {
-    setSelectedProfiles((prev) =>
-      prev.includes(profile) ? prev.filter((p) => p !== profile) : [...prev, profile]
-    );
-  };
+  const handleClose = () => setShow(false);
 
   const safeJson = async (res) => {
     const text = await res.text();
     try {
       return JSON.parse(text);
     } catch {
-      throw new Error(`Expected JSON, got: ${text.slice(0, 80)}...`);
+      throw new Error(`Expected JSON, got: ${text.slice(0, 120)}...`);
     }
   };
 
-  const loadExisting = async () => {
-    if (!token || !drinkId) return;
+  const resetForm = () => {
+    setExistingReview(null);
+    setRating(0);
+    setSelectedProfiles([]);
+    setReviewText("");
+  };
 
-    setLoadingExisting(true);
-    setExistingReviewId(null);
+  useEffect(() => {
+    setShow(false);
+    resetForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  const openAndLoad = async () => {
+    if (!token) {
+      alert("Trebuie să fii logat ca să adaugi o recenzie.");
+      return;
+    }
+    if (!id) return;
+
+    setShow(true);
+    setBusy(true);
 
     try {
+      // luăm recenziile userului curent (endpoint protejat)
       const res = await fetch(`${apiUrl}/reviews`, {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status} while loading reviews`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const myReviews = await safeJson(res);
 
-      const data = await safeJson(res);
-      const arr = Array.isArray(data) ? data : [];
+      const arr = Array.isArray(myReviews) ? myReviews : [];
 
-      // backend /reviews returnează: { _id, rating, review, tastes, drink, producer ... }
-      const existing = arr.find((r) => String(r?.drink?.id ?? r?.drink_id) === String(drinkId));
+      const mine =
+        arr.find((r) => String(r?.drink?.id) === String(id)) ||
+        arr.find((r) => String(r?.drink_id) === String(id)) ||
+        arr.find((r) => String(r?.beer_id) === String(id)) ||
+        null;
 
-      if (existing) {
-        setExistingReviewId(existing._id);
-        setRating(Number(existing.rating) || 0);
-        setMessage(existing.review || "");
-        setSelectedProfiles(Array.isArray(existing.tastes) ? existing.tastes : []);
+      setExistingReview(mine);
+
+      if (mine) {
+        setRating(Number(mine.rating) || 0);
+        setSelectedProfiles(Array.isArray(mine.tastes) ? mine.tastes : []);
+        setReviewText(mine.review || "");
       } else {
-        // reset pentru review nou
-        setRating(0);
-        setMessage("");
-        setSelectedProfiles([]);
+        resetForm();
       }
     } catch (e) {
       console.error(e);
-      // nu blocăm UI-ul; doar nu putem preîncărca
+      resetForm();
     } finally {
-      setLoadingExisting(false);
+      setBusy(false);
     }
   };
 
-  const deleteExisting = async () => {
-    if (!token || !existingReviewId) return;
-
-    setErrorMsg("");
-    try {
-      const res = await fetch(`${apiUrl}/reviews/${existingReviewId}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!res.ok) throw new Error(`HTTP ${res.status} while deleting review`);
-
-      setExistingReviewId(null);
-      setRating(0);
-      setMessage("");
-      setSelectedProfiles([]);
-
-      if (typeof onSuccess === "function") onSuccess();
-    } catch (e) {
-      console.error(e);
-      setErrorMsg("Nu pot șterge review-ul.");
-    }
+  const toggleTaste = (profile) => {
+    setSelectedProfiles((prev) =>
+      prev.includes(profile) ? prev.filter((p) => p !== profile) : [...prev, profile]
+    );
   };
 
   const handleSave = async () => {
-    setErrorMsg("");
+    if (!token || !id) return;
 
-    if (!token) {
-      setErrorMsg("Trebuie să fii logat ca să adaugi/modifici o recenzie.");
+    if (!rating || rating < 1) {
+      alert("Alege un rating.");
       return;
     }
-    if (!drinkId) {
-      setErrorMsg("Lipsește drinkId.");
-      return;
-    }
-    if (rating <= 0) {
-      setErrorMsg("Alege un rating.");
+    if (!selectedProfiles.length) {
+      alert("Selectează cel puțin un taste profile.");
       return;
     }
 
+    setBusy(true);
     try {
-      // dacă există deja review, îl ștergem întâi (ca să nu lovești regula de duplicate)
-      if (existingReviewId) {
-        const del = await fetch(`${apiUrl}/reviews/${existingReviewId}`, {
+      // “edit” fără PUT: ștergem vechiul review înainte
+      if (existingReview?._id) {
+        const del = await fetch(`${apiUrl}/reviews/${existingReview._id}`, {
           method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
         });
-        if (!del.ok) throw new Error(`HTTP ${del.status} while deleting old review`);
+
+        if (!del.ok) {
+          const t = await del.text().catch(() => "");
+          alert(`Nu pot șterge review-ul vechi. (${del.status}) ${t.slice(0, 140)}`);
+          return;
+        }
       }
 
       const payload = {
-        drink_id: drinkId,
+        drink_id: id,
         rating,
-        tastes: selectedProfiles, // poate fi [] după fix-ul din backend
-        review: message,
+        review: reviewText,
+        tastes: selectedProfiles,
       };
 
       const res = await fetch(`${apiUrl}/reviews`, {
@@ -160,137 +149,115 @@ function Review({ drinkId, onSuccess }) {
       });
 
       if (!res.ok) {
-        const text = await res.text().catch(() => "");
-        throw new Error(`HTTP ${res.status}. ${text.slice(0, 120)}`);
+        const t = await res.text().catch(() => "");
+        alert(`Nu pot salva recenzia. (${res.status}) ${t.slice(0, 140)}`);
+        return;
       }
 
       handleClose();
-      if (typeof onSuccess === "function") onSuccess();
-    } catch (e) {
-      console.error(e);
-      setErrorMsg("Nu pot salva review-ul. Verifică Network pentru detalii.");
+      resetForm();
+      onSuccess?.();
+    } finally {
+      setBusy(false);
     }
   };
 
-  // text buton
-  const mainLabel = existingReviewId ? "Edit Review" : "Add Review";
+  const deleteExisting = async () => {
+    if (!token || !existingReview?._id) return;
+
+    if (!confirm("Sigur vrei să ștergi recenzia?")) return;
+
+    setBusy(true);
+    try {
+      const res = await fetch(`${apiUrl}/reviews/${existingReview._id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const t = await res.text().catch(() => "");
+        alert(`Nu pot șterge recenzia. (${res.status}) ${t.slice(0, 140)}`);
+        return;
+      }
+
+      handleClose();
+      resetForm();
+      onSuccess?.();
+    } finally {
+      setBusy(false);
+    }
+  };
 
   return (
     <>
-      <Button variant="info" onClick={handleShow} disabled={!drinkId}>
-        {mainLabel}
+      <Button onClick={openAndLoad} variant="secondary" disabled={busy}>
+        {existingReview ? "Edit Review" : "Add Review"}
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered className="review-modal">
         <Modal.Header closeButton>
-          <Modal.Title>{existingReviewId ? "Edit your review" : "Write your review"}</Modal.Title>
+          <Modal.Title>{existingReview ? "Edit your review" : "Add a review"}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {errorMsg ? <Alert variant="danger">{errorMsg}</Alert> : null}
+          <Form.Group className="mb-3">
+            <Form.Label>Rating</Form.Label>
+            <Rating rating={rating} setRating={setRating} />
+          </Form.Group>
 
-          {loadingExisting ? (
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <Spinner animation="border" size="sm" />
-              <div>Loading…</div>
+          <Form.Group className="mb-3">
+            <Form.Label>Taste profile</Form.Label>
+            <div className="review-tastes">
+              {tasteProfiles.map((p) => (
+                <span
+                  key={p}
+                  className={`review-taste ${selectedProfiles.includes(p) ? "active" : ""}`}
+                  onClick={() => toggleTaste(p)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") toggleTaste(p);
+                  }}
+                >
+                  {p}
+                </span>
+              ))}
             </div>
-          ) : null}
+          </Form.Group>
 
-          <Form>
-            <Form.Group className="mb-3" controlId="ratingInput">
-              <Form.Label>Rating</Form.Label>
-              <div>
-                <CustomRating rating={rating} onChange={handleRatingChange} />
-              </div>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="tasteProfileInput">
-              <Form.Label>Taste profile</Form.Label>
-
-              <div>
-                {tasteProfiles
-                  .reduce((acc, profile, idx) => {
-                    if (idx % 3 === 0) acc.push([]);
-                    acc[acc.length - 1].push(profile);
-                    return acc;
-                  }, [])
-                  .map((row, rowIndex) => (
-                    <Container
-                      key={rowIndex}
-                      className="d-flex justify-content-start"
-                      style={{ gap: "10px" }}
-                    >
-                      {row.map((profile) => (
-                        <Badge
-                          key={profile}
-                          pill
-                          bg={
-                            profile === "Sweet"
-                              ? "primary"
-                              : profile === "Sour"
-                              ? "dark"
-                              : profile === "Bitter"
-                              ? "warning"
-                              : profile === "Malt"
-                              ? "danger"
-                              : profile === "Smoke"
-                              ? "info"
-                              : "success"
-                          }
-                          className={`taste-badge ${
-                            selectedProfiles.includes(profile) ? "selected" : ""
-                          }`}
-                          onClick={() => handleBadgeClick(profile)}
-                          style={{
-                            cursor: "pointer",
-                            fontSize: "1rem",
-                            padding: "10px 15px",
-                            marginTop: "15px",
-                            userSelect: "none",
-                          }}
-                        >
-                          {profile}
-                        </Badge>
-                      ))}
-                    </Container>
-                  ))}
-              </div>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="messageInput">
-              <Form.Label>Message</Form.Label>
-              <Form.Control
-                placeholder="Share your thoughts"
-                as="textarea"
-                rows={3}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-            </Form.Group>
-          </Form>
+          <Form.Group className="mb-3">
+            <Form.Label>Message</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={4}
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+            />
+          </Form.Group>
         </Modal.Body>
 
-        <Modal.Footer style={{ display: "flex", justifyContent: "space-between" }}>
+        <Modal.Footer className="review-footer">
           <div>
-            {existingReviewId ? (
-              <Button variant="danger" onClick={deleteExisting}>
+            {existingReview ? (
+              <button className="review-btn-delete" onClick={deleteExisting} disabled={busy} type="button">
                 Delete
-              </Button>
+              </button>
             ) : null}
           </div>
 
-          <div style={{ display: "flex", gap: 8 }}>
-            <Button variant="secondary" onClick={handleClose}>
+          <div className="review-footer-actions">
+            <button className="review-btn-close" onClick={handleClose} disabled={busy} type="button">
               Close
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
+            </button>
+            <button className="review-btn-save" onClick={handleSave} disabled={busy} type="button">
               Save
-            </Button>
+            </button>
           </div>
         </Modal.Footer>
       </Modal>
     </>
   );
 }
-
-export default Review;

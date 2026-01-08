@@ -166,7 +166,7 @@ export default function Profile() {
                   return (
                     <div className="profile-review-item" key={r._id}>
                       <div className="profile-review-top">
-                        <div className="profile-review-beer">{drinkName}</div>
+                        <div className="profile-review-item-title">{drinkName}</div>
                         <div className="profile-review-rating">{r.rating}/5</div>
                       </div>
 

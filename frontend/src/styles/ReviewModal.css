@@ -1,0 +1,104 @@
+/* ReviewModal.css – same visual language as Profile */
+
+.review-modal .modal-content {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+  color: #e9eefc;
+}
+
+.review-modal .modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 15, 26, 0.25);
+}
+
+.review-modal .modal-title {
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.review-modal .btn-close {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+.review-modal .modal-body label {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+/* textarea */
+.review-modal textarea {
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(10, 15, 26, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(233, 238, 252, 0.95);
+}
+
+.review-modal textarea:focus {
+  outline: none;
+  border-color: rgba(0, 180, 216, 0.45);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.18);
+}
+
+/* taste profile */
+.review-taste {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  background: rgba(10, 15, 26, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(233, 238, 252, 0.85);
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.review-taste.active {
+  background: rgba(0, 180, 216, 0.22);
+  border-color: rgba(0, 180, 216, 0.5);
+  color: #e9faff;
+}
+
+.review-taste:hover {
+  transform: translateY(-1px);
+}
+
+/* footer */
+.review-modal .modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 15, 26, 0.25);
+}
+
+/* buttons */
+.review-btn-delete {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-weight: 900;
+  color: white;
+}
+
+.review-btn-save {
+  background: linear-gradient(135deg, #ffd166, #ff7a59);
+  border: 0;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-weight: 900;
+  color: #121826;
+}
+
+.review-btn-close {
+  background: rgba(10, 15, 26, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 10px 18px;
+  color: rgba(233, 238, 252, 0.9);
+}

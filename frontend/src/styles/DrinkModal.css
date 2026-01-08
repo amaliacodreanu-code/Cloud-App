@@ -1,0 +1,133 @@
+/* =========================
+   REVIEW MODAL – GLOBAL
+========================= */
+
+.review-modal .modal-content {
+  border-radius: 18px;
+  background: rgba(15, 20, 35, 0.95);
+  color: #e9eefc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.review-modal .modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-modal .modal-title {
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.review-modal .modal-body label {
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.review-modal textarea {
+  background: rgba(10, 15, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e9eefc;
+  border-radius: 14px;
+}
+
+.review-modal textarea:focus {
+  outline: none;
+  border-color: rgba(0, 180, 216, 0.6);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+}
+
+/* =========================
+   TASTE TAGS
+========================= */
+
+.review-tastes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* =========================
+   TASTE TAGS (pill outline, ca în producer modal)
+========================= */
+
+.review-tastes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.review-taste {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(10, 15, 26, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(233, 238, 252, 0.72);
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.review-taste:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 180, 216, 0.35);
+  color: rgba(233, 238, 252, 0.9);
+}
+
+.review-taste.active {
+  background: rgba(0, 180, 216, 0.18);
+  border-color: rgba(0, 180, 216, 0.55);
+  color: rgba(233, 250, 255, 0.98);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.16);
+}
+
+/* =========================
+   FOOTER BUTTONS
+========================= */
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.review-btn-delete {
+  border: none;
+  border-radius: 14px;
+  padding: 8px 16px;
+  font-weight: 900;
+  background: #e63946;
+  color: #fff;
+}
+
+.review-btn-close {
+  border: none;
+  border-radius: 14px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.review-btn-save {
+  border: none;
+  border-radius: 14px;
+  padding: 8px 18px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffd166, #ff7a59);
+  color: #121826;
+}
+
+.review-btn-save:hover {
+  filter: brightness(1.05);
+}

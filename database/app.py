@@ -21,7 +21,7 @@ breweries_collection = db["breweries"]
 reviews_collection = db["reviews"]
 
 def add_beers():
-    with open('/app/beers.json', 'r', encoding='utf-8') as beers_file:
+    with open('/app/drinks.json', 'r', encoding='utf-8') as beers_file:
         beers = json.load(beers_file)
         beers_collection.insert_many(beers)
 

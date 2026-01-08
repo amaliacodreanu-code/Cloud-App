@@ -1,207 +1,214 @@
 import { useEffect, useState } from "react";
 import CustomNavbar from "./Navbar";
-import { Button, Card, Col, Container, Row, Spinner } from "react-bootstrap";
-import "../styles/Discover.css";
+import { Button, Card, Col, Container, Row, Spinner, Nav, Badge } from "react-bootstrap";
+import "../styles/Discover.css"; 
 import BeerModal from "./BeerModal";
 
 const Discover = () => {
-  const [breweries, setBreweries] = useState([]);
   const [beers, setBeers] = useState([]);
+  const [filteredBeers, setFilteredBeers] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("All");
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [currentBreweryPage, setCurrentBreweryPage] = useState(1);
-  const [currentBeerPage, setCurrentBeerPage] = useState(1);
-  const itemsPerPage = 10;
-  const pageButtonLimit = 5; // Number of page buttons to show at once
+  
+  // --- AICI ESTE LOGICA NOUA PENTRU BUTONUL ANIMAT ---
+  const [likedBeersLocal, setLikedBeersLocal] = useState({}); 
+
+  const handleTempClick = (beerId) => {
+    setLikedBeersLocal(prev => ({
+        ...prev,
+        [beerId]: !prev[beerId]
+    }));
+  };
+  // ---------------------------------------------------
+
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9; 
+  
   const apiUrl = window.__ENV__["VITE_API_URL"];
 
-  const handleClose = () => setShow(false);
-  const handleShow = (brewery) => {
-    setSelectedItem(brewery);
-    setShow(true);
-  };
-
+  // --- 1. FETCH DATA ---
   useEffect(() => {
-    const fetchBreweries = fetch(`${apiUrl}/breweries`, {
+    fetch(`${apiUrl}/beers`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json());
-
-    const fetchBeers = fetch(`${apiUrl}/beers`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json());
-
-    Promise.all([fetchBreweries, fetchBeers])
-      .then(([breweriesData, beersData]) => {
-        setBreweries(breweriesData);
-        setBeers(beersData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setLoading(false); // Stop loading even if there's an error
-      });
+      headers: { "Content-Type": "application/json" },
+    })
+    .then((response) => response.json()) 
+    .then((data) => {
+      setBeers(data);
+      setFilteredBeers(data);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      setLoading(false);
+    });
   }, []);
 
-  const handleBreweryPageChange = (newPage) => {
-    setCurrentBreweryPage(newPage);
-  };
+  // --- 2. CATEGORY FILTERING ---
+  const handleCategorySelect = (category) => {
+    setActiveCategory(category);
+    setCurrentPage(1); 
 
-  const handleBeerPageChange = (newPage) => {
-    setCurrentBeerPage(newPage);
-  };
-
-  const displayedBreweries = breweries.slice(
-    (currentBreweryPage - 1) * itemsPerPage,
-    currentBreweryPage * itemsPerPage
-  );
-
-  const displayedBeers = beers.slice(
-    (currentBeerPage - 1) * itemsPerPage,
-    currentBeerPage * itemsPerPage
-  );
-
-  const renderPaginationButtons = (
-    currentPage,
-    totalItems,
-    handlePageChange
-  ) => {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
-    const startPage = Math.max(
-      1,
-      currentPage - Math.floor(pageButtonLimit / 2)
-    );
-    const endPage = Math.min(totalPages, startPage + pageButtonLimit - 1);
-
-    const pageButtons = [];
-    for (let i = startPage; i <= endPage; i++) {
-      pageButtons.push(
-        <Button
-          key={i}
-          variant="dark"
-          size="sm"
-          onClick={() => handlePageChange(i)}
-          className="page-button"
-        >
-          {i}
-        </Button>
-      );
+    if (category === "All") {
+      setFilteredBeers(beers);
+    } else {
+      const filtered = beers.filter(item => item.cat_name === category);
+      setFilteredBeers(filtered);
     }
-
-    return (
-      <div className="pagination">
-        <Button
-          variant="dark"
-          size="sm"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </Button>
-        {pageButtons}
-        <Button
-          variant="dark"
-          size="sm"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </Button>
-      </div>
-    );
   };
+
+  // --- 3. EMOJI HELPER ---
+  const getEmoji = (cat) => {
+    if (cat.includes("Whiskey") || cat.includes("Whisky")) return "🥃";
+    if (cat.includes("Vin") || cat.includes("Wine")) return "🍷";
+    if (cat.includes("Cocktail")) return "🍸";
+    if (cat.includes("Gin")) return "🧊";
+    if (cat.includes("Ber") || cat.includes("Beer")) return "🍺";
+    return "🥂";
+  };
+
+  // --- 4. PAGINATION LOGIC ---
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredBeers.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredBeers.length / itemsPerPage);
+
+  // --- 5. EXTRACT CATEGORIES ---
+  const categories = ["All", ...new Set(beers.map(b => b.cat_name))];
+
+  const handleShow = (beer) => {
+    setSelectedItem(beer);
+    setShow(true);
+  };
+  const handleClose = () => setShow(false);
 
   return (
-    <>
+    <div className="discover-container">
       <CustomNavbar />
-      <Container
-        style={{ width: "70vw", backgroundColor: "white", padding: "2rem" }}
-      >
+      
+      <Container className="pt-5">
+        
+        {/* HERO SECTION */}
+        <div className="text-center mb-5">
+          <h1 className="hero-title">Exclusive <span style={{ color: "#ffc107" }}>Collection</span></h1>
+          <p className="hero-subtitle">Discover our finest selection of premium beverages</p>
+        </div>
+
+        {/* CATEGORY TABS */}
+        <Nav className="category-nav" activeKey={activeCategory}>
+          {categories.map((cat) => (
+            <Nav.Item key={cat}>
+              <Nav.Link 
+                eventKey={cat} 
+                onClick={() => handleCategorySelect(cat)}
+                className={activeCategory === cat ? "active" : ""}
+              >
+                {cat}
+              </Nav.Link>
+            </Nav.Item>
+          ))}
+        </Nav>
+
+        {/* MAIN CONTENT */}
         {loading ? (
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{ height: "100vh" }}
-          >
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+          <div className="d-flex justify-content-center align-items-center" style={{ height: "40vh" }}>
+            <Spinner animation="border" variant="warning" />
           </div>
         ) : (
-          <Row>
-            <Col className="list">
-              <h1>Breweries</h1>
-              <p>Top Breweries</p>
-              <div className="item-container">
-                {displayedBreweries.map((brewery, index) => {
-                  return (
-                    <Card style={{ width: "18rem" }} key={brewery.id}>
-                      <Card.Body>
-                        <Card.Title>
-                          {index + 1}. {brewery.name}
-                        </Card.Title>
-                        <Card.Text>{brewery.city}</Card.Text>
-                        <Card.Text>{brewery.state}</Card.Text>
-                        <Card.Text>{brewery.country}</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
+          <>
+            {/* GRID LAYOUT */}
+            <Row>
+              {currentItems.map((beer) => (
+                <Col key={beer.id} md={6} lg={4} className="mb-4">
+                  <div className="drink-card">
+                    {/* Image Placeholder */}
+                    <div className="card-img-placeholder">
+                      {getEmoji(beer.cat_name)}
+                    </div>
+                    
+                    {/* Card Body */}
+                    <div className="card-body-custom">
+                      <div className="d-flex justify-content-between align-items-center mb-2">
+                        <Badge className="custom-badge">{beer.cat_name}</Badge>
+                        <small className="text-muted">{beer.abv > 0 ? `${beer.abv}% ABV` : ""}</small>
+                      </div>
+                      
+                      <h3 className="drink-name">{beer.name}</h3>
+                      <p className="drink-style">{beer.style_name}</p>
+                      
+                      <div className="mt-auto">
+                          <div className="d-flex justify-content-between align-items-center mt-3 pt-3" style={{borderTop: '1px solid rgba(255,255,255,0.05)'}}>
+                             <Button 
+                               className="btn-details" 
+                               onClick={() => handleShow(beer)}
+                             >
+                               View Details
+                             </Button>
+
+                             {/* --- AICI ESTE BUTONUL NOU (MANA) --- */}
+                             <div 
+                                className={`beer-hand-btn ${likedBeersLocal[beer.id] ? 'active' : ''}`}
+                                onClick={() => handleTempClick(beer.id)}
+                                title="Like this drink!"
+                             >
+                                <div className="hand-shape-mask">
+                                    <div className="beer-liquid-fill"></div>
+                                </div>
+                             </div>
+                             {/* ------------------------------------ */}
+
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              ))}
+            </Row>
+
+            {/* PAGINATION */}
+            {totalPages > 1 && (
+              <div className="d-flex justify-content-center mt-5">
+                <Button 
+                  variant="outline-secondary" 
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage(prev => prev - 1)}
+                  className="me-2"
+                >
+                  &laquo; Prev
+                </Button>
+                <span className="align-self-center text-muted mx-3">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <Button 
+                  variant="outline-secondary" 
+                  disabled={currentPage === totalPages}
+                  onClick={() => setCurrentPage(prev => prev + 1)}
+                  className="ms-2"
+                >
+                  Next &raquo;
+                </Button>
               </div>
-              {renderPaginationButtons(
-                currentBreweryPage,
-                breweries.length,
-                handleBreweryPageChange
-              )}
-            </Col>
-            <Col className="list">
-              <h1>Beers</h1>
-              <p>Top Beers</p>
-              <div className="item-container">
-                {displayedBeers.map((beer, index) => {
-                  return (
-                    <Card style={{ width: "18rem" }} key={beer.id}>
-                      <Card.Body>
-                        <Card.Title>
-                          {index + 1}. {beer.name}
-                        </Card.Title>
-                        <Card.Text>{beer.cat_name}</Card.Text>
-                        <Card.Text>{beer.style_name}</Card.Text>
-                        <Card.Text>
-                          {beer.abv ? parseFloat(beer.abv).toFixed(1) : "N/A"}%
-                          alcohol
-                        </Card.Text>
-                        <Button
-                          variant="primary"
-                          onClick={() => {
-                            handleShow(beer);
-                          }}
-                        >
-                          Details
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  );
-                })}
-              </div>
-              {renderPaginationButtons(
-                currentBeerPage,
-                beers.length,
-                handleBeerPageChange
-              )}
-            </Col>
-          </Row>
+            )}
+
+            {/* CALL TO ACTION (Footer Banner) */}
+            <div className="cta-section">
+              <h3 className="cta-title">Can't find your favorite drink? 🥃</h3>
+              <p style={{color: '#8b949e'}}>Be the first to add it to our exclusive catalog.</p>
+              <Button className="btn-add-drink">
+                + Add New Drink
+              </Button>
+            </div>
+          </>
         )}
       </Container>
+      
       {selectedItem && (
         <BeerModal show={show} handleClose={handleClose} beer={selectedItem} />
       )}
-    </>
+    </div>
   );
 };
 

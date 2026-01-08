@@ -1,4 +1,4 @@
-.item-container {
+/* .item-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: 1rem;
@@ -15,4 +15,310 @@
     padding: 16px;
     border-radius: 8px;
     margin-bottom: 16px;
+} */
+
+/* Discover.css - Tema Dark Premium */
+body {
+  background-color: #0d1117; /* Fundal foarte închis, ca în poză */
+  color: #c9d1d9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.discover-container {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  background-color: #0d1117;
+}
+
+/* Titlul principal */
+.hero-title {
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  color: #8b949e;
+  font-size: 1.1rem;
+}
+
+/* Tab-urile de Categorii (Butoanele de sus) */
+.category-nav {
+  justify-content: center;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 10px;
+}
+
+.category-nav .nav-link {
+  color: #8b949e;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  margin: 0 5px;
+}
+
+.category-nav .nav-link:hover {
+  color: #ffffff;
+  background-color: #21262d;
+}
+
+.category-nav .nav-link.active {
+  color: #ffffff;
+  background-color: #1f6feb; 
+  box-shadow: 0 4px 15px rgba(31, 111, 235, 0.2);
+}
+
+
+.drink-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  height: 100%;
+}
+
+.drink-card:hover {
+  transform: translateY(-5px);
+  border-color: #8b949e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+.card-img-placeholder {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #21262d 0%, #161b22 100%);
+  font-size: 3.5rem;
+  border-bottom: 1px solid #30363d;
+}
+
+.card-body-custom {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 140px);
+}
+
+.drink-name {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.drink-style {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+
+.custom-badge {
+  background-color: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+
+.btn-details {
+  background-color: #238636; 
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  margin-top: 15px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.btn-details:hover {
+  background-color: #2ea043;
+}
+
+
+.cta-section {
+  margin-top: 5rem;
+  background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+  border: 1px dashed #30363d;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.cta-title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btn-add-drink {
+  background-color: #f78166; 
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: transform 0.2s;
+}
+
+.btn-add-drink:hover {
+  transform: scale(1.05);
+  background-color: #e57055;
+}
+
+
+
+.premium-modal-content {
+    background: linear-gradient(145deg, #161b22, #0d1117) !important;
+    border: 2px solid #ffc107 !important; /* Bold gold border for accent */
+    border-radius: 24px !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8) !important;
+    padding: 10px;
+}
+
+/* 2. Header & Title - Pure White & Bold */
+.premium-modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 20px !important;
+}
+
+.modal-title-custom {
+    color: #ffffff !important; /* Pure white for maximum visibility */
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.5px;
+}
+
+/* 3. High-Contrast Labels */
+.detail-label {
+    display: block;
+    color: #ffc107 !important; /* Gold for labels to guide the eye */
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+/* 4. Descriptions (The text that was invisible before) */
+.text-muted {
+    color: #f8f9fa !important; /* Off-white for perfect reading on dark bg */
+    font-size: 1.1rem !important;
+    line-height: 1.8 !important; /* More space between lines */
+    opacity: 1 !important;
+    font-weight: 400;
+}
+
+/* 5. ABV Badge - Fancy Style */
+.abv-badge {
+    background: linear-gradient(45deg, #ffc107, #ff9800) !important;
+    color: #000 !important;
+    padding: 8px 16px !important;
+    border-radius: 50px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+}
+
+/* 6. Spacing & Layout */
+.detail-item {
+    margin-bottom: 35px !important; /* Huge space between sections for clarity */
+}
+
+.modal-image-placeholder {
+    background: #21262d !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8rem;
+}
+
+/* 7. Buttons - Modern Pill Shape */
+.btn-premium-gold {
+    background: #ffc107 !important;
+    border: none !important;
+    color: #000 !important;
+    font-weight: 800 !important;
+    padding: 12px 30px !important;
+    border-radius: 50px !important;
+    transition: all 0.3s ease;
+}
+
+.btn-premium-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+}
+
+/* --- ANIMATED BEER-HAND LIKE BUTTON (CSS Masking Technique) --- */
+
+/* 1. Containerul principal al butonului */
+.beer-hand-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    /* O bordură subtilă, rotundă, ca să se vadă zona de click */
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+    margin-left: 10px;
+}
+
+/* Efect la hover pe cerc */
+.beer-hand-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+/* --- FIX: CLEANER HAND MASK --- */
+
+/* 2. Forma Mâinii (Masca SVG Nouă și Curată) */
+.hand-shape-mask {
+    /* Dimensiuni fixe pentru mască */
+    width: 24px;
+    height: 24px;
+    position: relative;
+    background-color: #6c757d; /* Gri neutru când e gol */
+    
+    
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z'/%3E%3C/svg%3E");
+    
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    
+ 
+    overflow: hidden; 
+    z-index: 1;
+}
+
+
+.beer-liquid-fill {
+    background: linear-gradient(to top, #f59f00, #ffc107);
+}
+
+.beer-hand-btn.active .hand-shape-mask {
+    background-color: rgba(255,255,255,0.1); 
 }

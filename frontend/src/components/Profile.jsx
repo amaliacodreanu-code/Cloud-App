@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CustomNavbar from "./Navbar";
 import "../styles/Profile.css";
 
 // categorii mai generale pentru drinksreviews
@@ -45,8 +46,8 @@ export default function Profile() {
 
     if (!pRes.ok) throw new Error(`Profile failed: ${pRes.status}`);
     if (!drRes.ok) throw new Error(`Drink reviews failed: ${drRes.status}`);
+
     // dacă nu ai implementat încă producer-reviews, îl lăsăm gol fără să stricăm pagina
-    // dar dacă există și e 401/404, nu vrem să crape tot
     let prData = [];
     if (prRes.ok) {
       prData = await safeJson(prRes);
@@ -71,7 +72,6 @@ export default function Profile() {
 
     loadAll().catch((e) => {
       console.error(e);
-      // dacă ceva e prost pe backend, măcar nu moare complet UI-ul
       setProfile(null);
       setDrinkReviews([]);
       setProducerReviews([]);
@@ -95,142 +95,156 @@ export default function Profile() {
     await loadAll();
   };
 
-  if (!profile) return null;
-
-  const rankIcon = profile.rank === "Expert" ? "⭐" : "🔰";
+  const rankIcon = profile?.rank === "Expert" ? "⭐" : "🔰";
 
   return (
-    <div className="profile-page">
-      <div className="profile-card">
-        <div className="profile-header">
-          <div className="profile-identity">
-            <div className="profile-username">
-              Cont: <span>{profile.username}</span>
-            </div>
+    <>
+      <CustomNavbar />
 
-            <span className={`dr-badge dr-badge-${profile.rank?.toLowerCase()}`}>
-              <span className="dr-badge-icon">{rankIcon}</span>
-              {profile.rank}
-            </span>
-          </div>
+      <div className="profile-page">
+        <div className="profile-card">
+          {!profile ? (
+            <div className="profile-review-empty">Se încarcă profilul...</div>
+          ) : (
+            <>
+              <div className="profile-header">
+                <div className="profile-identity">
+                  <div className="profile-username">
+                    Cont: <span>{profile.username}</span>
+                  </div>
 
-          <div className="profile-stats">
-            <div>Recenzii băuturi: {drinkReviews.length}</div>
-            <div>Recenzii producători: {producerReviews.length}</div>
-            <div>
-              Ultimul login:{" "}
-              {profile.last_login
-                ? new Date(profile.last_login).toLocaleString("ro-RO")
-                : "Neînregistrat"}
-            </div>
-          </div>
-        </div>
+                  <span className={`dr-badge dr-badge-${profile.rank?.toLowerCase()}`}>
+                    <span className="dr-badge-icon">{rankIcon}</span>
+                    {profile.rank}
+                  </span>
+                </div>
 
-        <div className="profile-pref">
-          Preferință: <strong>{profile.preferred_style || "Necompletat"}</strong>
-        </div>
+                <div className="profile-stats">
+                  <div>Recenzii băuturi: {drinkReviews.length}</div>
+                  <div>Recenzii producători: {producerReviews.length}</div>
+                  <div>
+                    Ultimul login:{" "}
+                    {profile.last_login
+                      ? new Date(profile.last_login).toLocaleString("ro-RO")
+                      : "Neînregistrat"}
+                  </div>
+                </div>
+              </div>
 
-        <div className="profile-form">
-          <label>Bio</label>
-          <textarea value={bio} onChange={(e) => setBio(e.target.value)} />
+              <div className="profile-pref">
+                Preferință: <strong>{profile.preferred_style || "Necompletat"}</strong>
+              </div>
 
-          <label>Preferință</label>
-          <select value={preferredStyle} onChange={(e) => setPreferredStyle(e.target.value)}>
-            <option value="">Alege...</option>
-            {preferences.map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
-          </select>
+              <div className="profile-form">
+                <label>Bio</label>
+                <textarea value={bio} onChange={(e) => setBio(e.target.value)} />
 
-          <div className="profile-actions">
-            <button onClick={save}>Salvează</button>
-          </div>
-        </div>
+                <label>Preferință</label>
+                <select
+                  value={preferredStyle}
+                  onChange={(e) => setPreferredStyle(e.target.value)}
+                >
+                  <option value="">Alege...</option>
+                  {preferences.map((p) => (
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  ))}
+                </select>
 
-        {/* DRINK REVIEWS */}
-        <div className="profile-reviews">
-          <div className="profile-reviews-head">
-            <div className="profile-reviews-title">Recenziile mele, băuturi</div>
-            <div className="profile-reviews-count">{drinkReviews.length}</div>
-          </div>
+                <div className="profile-actions">
+                  <button onClick={save}>Salvează</button>
+                </div>
+              </div>
 
-          <div className="profile-reviews-list">
-            {drinkReviews.length ? (
-              drinkReviews
-                .slice()
-                .reverse()
-                .map((r) => {
-                  const drinkName = r?.drink?.name || `Băutură #${r?.drink_id || "-"}`;
-                  return (
-                    <div className="profile-review-item" key={r._id}>
-                      <div className="profile-review-top">
-                        <div className="profile-review-item-title">{drinkName}</div>
-                        <div className="profile-review-rating">{r.rating}/5</div>
-                      </div>
+              {/* DRINK REVIEWS */}
+              <div className="profile-reviews">
+                <div className="profile-reviews-head">
+                  <div className="profile-reviews-title">Recenziile mele, băuturi</div>
+                  <div className="profile-reviews-count">{drinkReviews.length}</div>
+                </div>
 
-                      {r.review ? <div className="profile-review-text">{r.review}</div> : null}
+                <div className="profile-reviews-list">
+                  {drinkReviews.length ? (
+                    drinkReviews
+                      .slice()
+                      .reverse()
+                      .map((r) => {
+                        const drinkName = r?.drink?.name || `Băutură #${r?.drink_id || "-"}`;
+                        return (
+                          <div className="profile-review-item" key={r._id}>
+                            <div className="profile-review-top">
+                              <div className="profile-review-item-title">{drinkName}</div>
+                              <div className="profile-review-rating">{r.rating}/5</div>
+                            </div>
 
-                      {Array.isArray(r.tastes) && r.tastes.length > 0 ? (
-                        <div className="profile-review-tags">
-                          {r.tastes.map((t) => (
-                            <span className="profile-tag" key={t}>
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      ) : null}
+                            {r.review ? <div className="profile-review-text">{r.review}</div> : null}
+
+                            {Array.isArray(r.tastes) && r.tastes.length > 0 ? (
+                              <div className="profile-review-tags">
+                                {r.tastes.map((t) => (
+                                  <span className="profile-tag" key={t}>
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })
+                  ) : (
+                    <div className="profile-review-empty">Nu ai încă recenzii la băuturi.</div>
+                  )}
+                </div>
+              </div>
+
+              {/* PRODUCER REVIEWS */}
+              <div className="profile-reviews" style={{ marginTop: 18 }}>
+                <div className="profile-reviews-head">
+                  <div className="profile-reviews-title">Recenziile mele, producători</div>
+                  <div className="profile-reviews-count">{producerReviews.length}</div>
+                </div>
+
+                <div className="profile-reviews-list">
+                  {producerReviews.length ? (
+                    producerReviews
+                      .slice()
+                      .reverse()
+                      .map((r) => {
+                        const producerName =
+                          r?.producer?.name || `Producător #${r?.producer_id || "-"}`;
+                        return (
+                          <div className="profile-review-item" key={r._id}>
+                            <div className="profile-review-top">
+                              <div className="profile-review-beer">{producerName}</div>
+                              <div className="profile-review-rating">{r.rating}/5</div>
+                            </div>
+
+                            {r.review ? <div className="profile-review-text">{r.review}</div> : null}
+
+                            {Array.isArray(r.tastes) && r.tastes.length > 0 ? (
+                              <div className="profile-review-tags">
+                                {r.tastes.map((t) => (
+                                  <span className="profile-tag" key={t}>
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })
+                  ) : (
+                    <div className="profile-review-empty">
+                      Nu ai încă recenzii la producători.
                     </div>
-                  );
-                })
-            ) : (
-              <div className="profile-review-empty">Nu ai încă recenzii la băuturi.</div>
-            )}
-          </div>
-        </div>
-
-        {/* PRODUCER REVIEWS */}
-        <div className="profile-reviews" style={{ marginTop: 18 }}>
-          <div className="profile-reviews-head">
-            <div className="profile-reviews-title">Recenziile mele, producători</div>
-            <div className="profile-reviews-count">{producerReviews.length}</div>
-          </div>
-
-          <div className="profile-reviews-list">
-            {producerReviews.length ? (
-              producerReviews
-                .slice()
-                .reverse()
-                .map((r) => {
-                  const producerName = r?.producer?.name || `Producător #${r?.producer_id || "-"}`;
-                  return (
-                    <div className="profile-review-item" key={r._id}>
-                      <div className="profile-review-top">
-                        <div className="profile-review-beer">{producerName}</div>
-                        <div className="profile-review-rating">{r.rating}/5</div>
-                      </div>
-
-                      {r.review ? <div className="profile-review-text">{r.review}</div> : null}
-
-                      {Array.isArray(r.tastes) && r.tastes.length > 0 ? (
-                        <div className="profile-review-tags">
-                          {r.tastes.map((t) => (
-                            <span className="profile-tag" key={t}>
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      ) : null}
-                    </div>
-                  );
-                })
-            ) : (
-              <div className="profile-review-empty">Nu ai încă recenzii la producători.</div>
-            )}
-          </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 }

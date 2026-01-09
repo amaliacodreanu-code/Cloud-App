@@ -37,7 +37,7 @@ const Home = () => {
                 <Accordion.Header>Add to favorites</Accordion.Header>
                 <Accordion.Body>
                   <p>
-                    Save drinks to your <a href="/favorites">favorites</a> and keep
+                    Save drinks to your <a href="/discover">favorites</a> and keep
                     track of what you reviewed in your{" "}
                     <a href="/profile">profile</a>.
                   </p>

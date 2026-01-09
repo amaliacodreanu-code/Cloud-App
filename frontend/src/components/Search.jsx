@@ -53,20 +53,17 @@ const Search = () => {
   };
 
   const fetchCategories = async () => {
-    // preferred endpoint
     try {
       return await fetchJson(`${apiUrl}/drinks/categories`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
     } catch {
-      // fallback old alias if you kept it
       const legacy = await fetchJson(`${apiUrl}/beers/categories`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
 
-      // legacy format was [{cat: [styles]}], new is often ["Cocktail", ...]
       if (Array.isArray(legacy) && legacy.length && typeof legacy[0] === "object") {
         return legacy.map((o) => Object.keys(o)[0]).filter(Boolean);
       }
@@ -75,14 +72,12 @@ const Search = () => {
   };
 
   const fetchAllDrinks = async () => {
-    // preferred endpoint
     try {
       return await fetchJson(`${apiUrl}/drinks`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
     } catch {
-      // fallback old alias
       return await fetchJson(`${apiUrl}/beers`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -116,7 +111,9 @@ const Search = () => {
         setAllDrinks(drinksArr);
         setCategories(catsArr);
 
-        const favIds = fav.map((x) => String(x?.id ?? x?.drink_id ?? x?._id ?? "")).filter(Boolean);
+        const favIds = fav
+          .map((x) => String(x?.id ?? x?.drink_id ?? x?._id ?? ""))
+          .filter(Boolean);
         setFavorites(favIds);
 
         setResults(drinksArr);
@@ -152,7 +149,7 @@ const Search = () => {
     setResults(filtered);
   }, [search, allDrinks]);
 
-  // Category filtering (client-side for drinks; server-side optional)
+  // Category filtering (client-side)
   useEffect(() => {
     setCurrentPage(1);
 
@@ -198,7 +195,7 @@ const Search = () => {
           variant="dark"
           size="sm"
           onClick={() => setCurrentPage(i)}
-          className="page-button"
+          className={`page-button ${i === currentPage ? "active" : ""}`}
         >
           {i}
         </Button>
@@ -237,8 +234,8 @@ const Search = () => {
     }
 
     const id = String(drinkId);
-
     const already = favorites.includes(id);
+
     // optimistic update
     setFavorites((prev) => (already ? prev.filter((x) => x !== id) : [...prev, id]));
 
@@ -269,102 +266,108 @@ const Search = () => {
     <>
       <CustomNavbar />
 
-      <Container
-        className="search-container"
-        style={{ width: "70vw", backgroundColor: "white", padding: "2rem" }}
-      >
-        <h1>Search</h1>
-        <p>
-          Page{" "}
-          <strong>
-            {currentPage} of {totalPages}
-          </strong>
-        </p>
-
-        <Form>
-          <Form.Group className="mb-3 search-bar" controlId="searchInput">
-            <Form.Control
-              type="text"
-              placeholder="Search drinks"
-              value={search}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3 search-bar" controlId="categorySelect">
-            <Form.Control as="select" value={category} onChange={handleCategoryChange}>
-              <option value="">Select a category</option>
-              {categories.map((c, idx) => (
-                <option key={`${c}-${idx}`} value={c}>
-                  {c}
-                </option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-        </Form>
-
-        {loading ? (
-          <div className="d-flex justify-content-center align-items-center" style={{ padding: "22px" }}>
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
-        ) : (
-          <>
-            <div className="search-results">
-              {displayedResults.map((drink, index) => {
-                const id = String(drink?.id ?? "");
-                const categoryText = drink?.category ?? drink?.cat_name ?? "—";
-                const styleText = drink?.style_name ?? "—";
-
-                return (
-                  <Card key={`${id}-${index}`} style={{ width: "18rem" }}>
-                    <Card.Body className="card-body">
-                      <Card.Title>
-                        {index + 1}. {drink?.name || "Unnamed"}
-                      </Card.Title>
-
-                      <Card.Text>{categoryText}</Card.Text>
-                      <Card.Text>{styleText}</Card.Text>
-
-                      <Card.Text>
-                        {drink?.abv != null && drink?.abv !== ""
-                          ? `${Number(drink.abv).toFixed(1)}% alcohol`
-                          : "ABV: N/A"}
-                      </Card.Text>
-
-                      <Container className="d-flex justify-content-between">
-                        <Button
-                          variant="primary"
-                          onClick={() => handleShow(drink)}
-                          disabled={!drink?.id}
-                        >
-                          Details
-                        </Button>
-
-                        <i
-                          className={`fa ${favorites.includes(id) ? "fa-star" : "fa-star-o"}`}
-                          onClick={() => toggleFavorite(id)}
-                          style={{
-                            marginTop: "0.5rem",
-                            fontSize: "1.5rem",
-                            cursor: "pointer",
-                            color: favorites.includes(id) ? "gold" : "black",
-                          }}
-                          aria-label="favorite"
-                          role="button"
-                        />
-                      </Container>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
+      <div className="search-page">
+        <Container className="search-card">
+          <div className="search-header">
+            <div>
+              <h1 className="search-title">Search</h1>
+              <p className="search-subtitle">
+                Page <strong>{currentPage} of {totalPages}</strong>
+              </p>
             </div>
+          </div>
 
-            {renderPaginationButtons()}
-          </>
-        )}
-      </Container>
+          <Form className="search-form">
+            <Form.Group className="mb-3" controlId="searchInput">
+              <Form.Control
+                className="search-input"
+                type="text"
+                placeholder="Search drinks"
+                value={search}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="categorySelect">
+              <Form.Control
+                className="search-select"
+                as="select"
+                value={category}
+                onChange={handleCategoryChange}
+              >
+                <option value="">Select a category</option>
+                {categories.map((c, idx) => (
+                  <option key={`${c}-${idx}`} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Form>
+
+          {loading ? (
+            <div className="search-loading">
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </div>
+          ) : (
+            <>
+              <div className="search-results">
+                {displayedResults.map((drink, index) => {
+                  const id = String(drink?.id ?? "");
+                  const categoryText = drink?.category ?? drink?.cat_name ?? "—";
+                  const styleText = drink?.style_name ?? "—";
+
+                  return (
+                    <Card key={`${id}-${index}`} className="search-result-card">
+                      <Card.Body className="search-result-body">
+                        <Card.Title className="search-result-title">
+                          {index + 1}. {drink?.name || "Unnamed"}
+                        </Card.Title>
+
+                        <Card.Text className="search-result-meta">{categoryText}</Card.Text>
+                        <Card.Text className="search-result-meta">{styleText}</Card.Text>
+
+                        <Card.Text className="search-result-meta">
+                          {drink?.abv != null && drink?.abv !== ""
+                            ? `${Number(drink.abv).toFixed(1)}% alcohol`
+                            : "ABV: N/A"}
+                        </Card.Text>
+
+                        <Container className="d-flex justify-content-between align-items-center">
+                          <Button
+                            variant="primary"
+                            className="search-details-btn"
+                            onClick={() => handleShow(drink)}
+                            disabled={!drink?.id}
+                          >
+                            Details
+                          </Button>
+
+                          <i
+                            className={`fa ${favorites.includes(id) ? "fa-star" : "fa-star-o"}`}
+                            onClick={() => toggleFavorite(id)}
+                            style={{
+                              fontSize: "1.5rem",
+                              cursor: "pointer",
+                              color: favorites.includes(id) ? "gold" : "rgba(233,238,252,0.9)",
+                            }}
+                            aria-label="favorite"
+                            role="button"
+                          />
+                        </Container>
+                      </Card.Body>
+                    </Card>
+                  );
+                })}
+              </div>
+
+              {renderPaginationButtons()}
+            </>
+          )}
+        </Container>
+      </div>
 
       {selectedItem ? (
         <DrinkModal show={show} handleClose={handleClose} drink={selectedItem} />

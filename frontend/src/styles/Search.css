@@ -1,20 +1,176 @@
+/* Page background like Profile */
+.search-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(0, 180, 216, 0.18), transparent 55%),
+              radial-gradient(900px 700px at 80% 20%, rgba(255, 183, 3, 0.18), transparent 55%),
+              linear-gradient(180deg, #0b1220 0%, #0a0f1a 100%);
+  display: flex;
+  justify-content: center;
+  color: #e9eefc;
+}
+
+/* Glass card container */
+.search-card {
+  width: 100%;
+  max-width: 980px;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  animation: searchBreathe 6s ease-in-out infinite;
+}
+
+@keyframes searchBreathe {
+  0%, 100% {
+    opacity: 0.94;
+    box-shadow: 0 14px 42px rgba(0, 0, 0, 0.45);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.search-title {
+  margin: 0;
+  font-weight: 900;
+  color: rgba(233, 238, 252, 0.95);
+}
+
+.search-subtitle {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: rgba(233, 238, 252, 0.8);
+}
+
+/* Form styling in the same theme */
+.search-form {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.search-input,
+.search-select {
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  background: rgba(10, 15, 26, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: rgba(233, 238, 252, 0.95) !important;
+}
+
+.search-input::placeholder {
+  color: rgba(233, 238, 252, 0.55);
+}
+
+.search-input:focus,
+.search-select:focus {
+  outline: none !important;
+  border-color: rgba(0, 180, 216, 0.45) !important;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.18) !important;
+}
+
+/* Spinner area */
+.search-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+}
+
+/* Results grid */
+.search-results {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+/* Result cards: match glass blocks */
+.search-result-card {
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.search-result-body {
+  background: transparent !important;
+}
+
+.search-result-title {
+  font-weight: 900 !important;
+  color: rgba(233, 238, 252, 0.95) !important;
+}
+
+.search-result-meta {
+  margin-bottom: 6px;
+  color: rgba(233, 238, 252, 0.78);
+  font-size: 14px;
+}
+
+/* Details button: warm gradient like profile action */
+.search-details-btn {
+  border: 0 !important;
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  font-weight: 900 !important;
+  background: linear-gradient(135deg, #ffd166, #ff7a59) !important;
+  color: #121826 !important;
+}
+
+.search-details-btn:hover {
+  filter: brightness(1.05);
+}
+
+/* Pagination */
 .pagination {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 6px;
 }
 
-.search-container {
-    background-color: white;
-    padding: 16px;
+/* Base pagination buttons (Previous/Next + numbers) */
+.pagination .btn {
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(10, 15, 26, 0.45) !important;
+  color: rgba(233, 238, 252, 0.9) !important;
+  font-weight: 800 !important;
 }
 
+.pagination .btn:hover:not(:disabled) {
+  border-color: rgba(0, 180, 216, 0.35) !important;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.14) !important;
+}
+
+/* Number buttons: square-ish like your old design but themed */
 .page-button {
-    border-radius: 4px !important;
-    padding: 0 !important;
-    width: 2rem;
-    height: 2rem;
+  padding: 0 !important;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 12px !important;
+}
+
+/* Active page visual */
+.page-button.active,
+.page-button:focus {
+  border-color: rgba(255, 183, 3, 0.45) !important;
+  box-shadow: 0 0 0 3px rgba(255, 183, 3, 0.14) !important;
 }

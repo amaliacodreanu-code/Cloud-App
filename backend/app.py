@@ -5,16 +5,29 @@ from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, jwt_required, get_jwt_identity
 from dotenv import load_dotenv
 from flask_caching import Cache
+from flask_cors import CORS
+from prometheus_client import Counter, generate_latest
+from flask import Response
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 load_dotenv()
 app = Flask(__name__)
+CORS(
+    app,
+    resources={r"/*": {"origins": ["http://localhost:30080"]}},
+    allow_headers=["Content-Type", "Authorization"],
+    methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+)
+
+metrics = PrometheusMetrics(app)
 
 secret_key_file = "/app/secret_key.txt"
 with open(secret_key_file, "r") as file:
     secret_key = file.read().strip()
 
 app.config["JWT_SECRET_KEY"] = secret_key
-app.config["DB_API_URL"] = os.getenv("DB_API_URL")
+app.config["DB_API_URL"] = os.getenv("DB_API_URL", "http://data-layer-api:5000").rstrip("/")
 
 cache = Cache(app, config={"CACHE_TYPE": "SimpleCache"})
 jwt = JWTManager(app)
@@ -32,6 +45,26 @@ def _query_from_args():
     for key, value in request.args.items():
         query[key] = value
     return query
+
+
+
+
+REQUEST_COUNT = Counter(
+    'http_requests_total',
+    'Total HTTP requests',
+    ['method', 'endpoint']
+)
+
+@app.before_request
+def count_requests():
+    REQUEST_COUNT.labels(
+        request.method,
+        request.path
+    ).inc()
+
+@app.route('/metrics')
+def metrics():
+    return Response(generate_latest(), mimetype='text/plain')
 
 
 # -----------------------------

@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  labels:
+    app: backend
 spec:
-  replicas: 1
+  replicas: {{ .Values.backend.replicas | default 1 }}
   selector:
     matchLabels:
       app: backend
@@ -14,27 +16,33 @@ spec:
     spec:
       containers:
         - name: backend
-          image: {{ .Values.backend.image }}
-          imagePullPolicy: Never
+          image: {{ .Values.backend.image | default "backend" }}
+          imagePullPolicy: {{ .Values.backend.imagePullPolicy | default "Never" }}
           ports:
-            - containerPort: {{ .Values.backend.port }}
+            - containerPort: {{ .Values.backend.port | default 5000 }}
           env:
-            - name: MONGO_URL
-              value: {{ .Values.backend.mongoUrl | quote }}
-            - name: DB_NAME
-              value: {{ .Values.backend.dbName | quote }}
-
+            - name: DB_API_URL
+              value: {{ .Values.backend.dbApiUrl | default "http://data-layer-api:5000" | quote }}
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend
+  labels:
+    app: backend
 spec:
   type: NodePort
   selector:
     app: backend
   ports:
     - name: http
-      port: {{ .Values.backend.port }}
-      targetPort: {{ .Values.backend.port }}
-      nodePort: {{ .Values.backend.nodePort }}
+      port: {{ .Values.backend.port | default 5000 }}
+      targetPort: {{ .Values.backend.port | default 5000 }}
+      nodePort: {{ .Values.backend.nodePort | default 30085 }}

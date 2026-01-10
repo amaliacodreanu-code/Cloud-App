@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager, create_access_token
 from hashlib import sha256
 from dotenv import load_dotenv
 from flask_cors import CORS
+from prometheus_flask_exporter import PrometheusMetrics
 
 load_dotenv()
 
@@ -41,6 +42,7 @@ def update_last_login(username):
     except Exception:
         pass
 
+metrics = PrometheusMetrics(app)
 
 @app.route('/register', methods=['POST'])
 def register():

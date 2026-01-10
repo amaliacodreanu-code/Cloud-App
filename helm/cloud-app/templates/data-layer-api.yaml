@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: data-layer-api
 spec:
-  replicas: 1
+  replicas: {{ .Values.dataLayer.replicas | default 1 }}
   selector:
     matchLabels:
       app: data-layer-api
@@ -15,7 +15,8 @@ spec:
       containers:
         - name: data-layer-api
           image: {{ .Values.dataLayer.image | default "data-layer-api" }}
-          imagePullPolicy: Never
+          imagePullPolicy: {{ .Values.dataLayer.imagePullPolicy | default "Never" }}
+
           ports:
             - containerPort: {{ .Values.dataLayer.port | default 5000 }}
           env:

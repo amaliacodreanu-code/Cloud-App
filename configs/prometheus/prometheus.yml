@@ -7,27 +7,17 @@ scrape_configs:
     static_configs:
       - targets: ['prometheus:9090']
 
-  - job_name: 'docker'
+  - job_name: 'backend'
     scrape_interval: 5s
     static_configs:
-      - targets: ['host.docker.internal:9323']
+      - targets: ['backend:5000']
 
-  - job_name: 'node resources'
+  - job_name: 'auth'
+    scrape_interval: 5s
     static_configs:
-      - targets: ['node_exporter:9100']
-    params:
-      collect[]:
-        - cpu
-        - meminfo
-        - diskstats
-        - netdev
-        - netstat
+      - targets: ['auth:5000']
 
-  - job_name: 'node storage'
+  - job_name: 'data-layer-api'
+    scrape_interval: 5s
     static_configs:
-      - targets: ['node_exporter:9100']
-    params:
-      collect[]:
-        - filefd
-        - filesystem
-        - xfs
+      - targets: ['data-layer-api:5000']

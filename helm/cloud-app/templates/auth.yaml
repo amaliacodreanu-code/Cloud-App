@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: auth
 spec:
-  replicas: 1
+  replicas: {{ .Values.auth.replicas | default 1 }}
   selector:
     matchLabels:
       app: auth
@@ -14,14 +14,13 @@ spec:
     spec:
       containers:
         - name: auth
-          image: {{ .Values.auth.image }}
-          imagePullPolicy: Never
+          image: {{ .Values.auth.image | default "auth" }}
+          imagePullPolicy: {{ .Values.auth.imagePullPolicy | default "Never" }}
           ports:
-            - containerPort: {{ .Values.auth.port }}
+            - containerPort: {{ .Values.auth.port | default 5000 }}
           env:
             - name: DB_API_URL
               value: {{ .Values.auth.dbApiUrl | quote }}
-
 ---
 apiVersion: v1
 kind: Service
@@ -33,6 +32,6 @@ spec:
     app: auth
   ports:
     - name: http
-      port: {{ .Values.auth.port }}
-      targetPort: {{ .Values.auth.port }}
-      nodePort: {{ .Values.auth.nodePort }}
+      port: {{ .Values.auth.port | default 5000 }}
+      targetPort: {{ .Values.auth.port | default 5000 }}
+      nodePort: {{ .Values.auth.nodePort | default 30084 }}

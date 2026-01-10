@@ -5,17 +5,20 @@ frontend:
 
 auth:
   image: auth
+  imagePullPolicy: Never
+  replicas: 1
   port: 5000
   nodePort: 30084
   dbApiUrl: "http://data-layer-api:5000"
 
-
 backend:
+  replicas: 1
   image: backend
+  imagePullPolicy: Never
   port: 5000
   nodePort: 30085
-  mongoUrl: "mongodb://database:27017"
-  dbName: "cloud_app"
+  dbApiUrl: "http://data-layer-api:5000"
+
 
 
 mongo:
@@ -35,5 +38,7 @@ portainer:
 
 dataLayer:
   image: data-layer-api
+  imagePullPolicy: Never
   port: 5000
-  mongodbHost: "mongodb://database:27017/cloud_app"
+  replicas: 1
+  mongoUrl: "mongodb://database:27017/cloud_app"

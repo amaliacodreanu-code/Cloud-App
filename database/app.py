@@ -14,7 +14,8 @@ app = Flask(__name__)
 mongodb_host = os.getenv("MONGODB_HOST")
 
 client = MongoClient(mongodb_host)
-db = client[mongodb_host.split("/")[-1]]
+db_name = mongodb_host.rsplit("/", 1)[-1].split("?", 1)[0]
+db = client[db_name]
 
 users_collection = db["users"]
 drinks_collection = db["drinks"]

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-layer-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-layer-api
+  template:
+    metadata:
+      labels:
+        app: data-layer-api
+    spec:
+      containers:
+        - name: data-layer-api
+          image: {{ .Values.dataLayer.image | default "data-layer-api" }}
+          imagePullPolicy: Never
+          ports:
+            - containerPort: {{ .Values.dataLayer.port | default 5000 }}
+          env:
+            - name: MONGODB_HOST
+              value: {{ .Values.dataLayer.mongodbHost | quote }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-layer-api
+spec:
+  selector:
+    app: data-layer-api
+  ports:
+    - port: {{ .Values.dataLayer.port | default 5000 }}
+      targetPort: {{ .Values.dataLayer.port | default 5000 }}
+  type: ClusterIP

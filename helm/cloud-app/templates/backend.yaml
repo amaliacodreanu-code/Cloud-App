@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: {{ .Values.backend.image | default "backend" }}
+          imagePullPolicy: Never
+          ports:
+            - containerPort: {{ .Values.backend.port | default 5000 }}
+          env:
+            - name: DB_API_URL
+              value: {{ .Values.backend.dbApiUrl | quote }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: {{ .Values.backend.port | default 5000 }}
+      targetPort: {{ .Values.backend.port | default 5000 }}
+  type: ClusterIP

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: {{ .Values.auth.image | default "auth" }}
+          imagePullPolicy: Never
+          ports:
+            - containerPort: {{ .Values.auth.port | default 5000 }}
+          env:
+            - name: DB_API_URL
+              value: {{ .Values.auth.dbApiUrl | quote }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth
+spec:
+  selector:
+    app: auth
+  ports:
+    - port: {{ .Values.auth.port | default 5000 }}
+      targetPort: {{ .Values.auth.port | default 5000 }}
+  type: ClusterIP

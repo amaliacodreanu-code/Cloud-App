@@ -16,7 +16,8 @@ with open(secret_key_file, 'r') as file:
     secret_key = file.read().strip()
 
 app.config["JWT_SECRET_KEY"] = secret_key
-app.config["DB_API_URL"] = "http://data-layer-api:5000"
+app.config["DB_API_URL"] = os.getenv("DB_API_URL", "http://data-layer-api:5000").rstrip("/")
+
 
 jwt = JWTManager(app)
 
@@ -57,7 +58,12 @@ def register():
         timeout=1.0
     )
 
-    return res.json(), res.status_code
+    try:
+        return res.json(), res.status_code
+    except Exception:
+        return jsonify({'message': res.text}), res.status_code
+
+
 
 
 @app.route('/login', methods=['POST'])

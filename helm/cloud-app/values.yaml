@@ -1,0 +1,34 @@
+frontend:
+  image: frontend
+  port: 80
+  nodePort: 30080
+
+auth:
+  image: auth
+  port: 5000
+  dbApiUrl: "http://data-layer-api:5000"
+
+backend:
+  image: backend
+  port: 5000
+  dbApiUrl: "http://data-layer-api:5000"
+
+mongo:
+  image: mongo:6
+  port: 27017
+  storage: 1Gi
+
+adminer:
+  image: adminer
+  port: 8080
+  nodePort: 30081
+
+portainer:
+  image: portainer/portainer-ce
+  port: 9000
+  nodePort: 30082
+
+dataLayer:
+  image: data-layer-api
+  port: 5000
+  mongodbHost: "mongodb://database:27017/cloud_app"

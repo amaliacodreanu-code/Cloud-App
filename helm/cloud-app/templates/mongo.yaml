@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+        - name: mongo
+          image: {{ .Values.mongo.image | default "mongo:6" }}
+          ports:
+            - containerPort: {{ .Values.mongo.port | default 27017 }}
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-storage
+      volumes:
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+spec:
+  selector:
+    app: database
+  ports:
+    - port: {{ .Values.mongo.port | default 27017 }}
+      targetPort: {{ .Values.mongo.port | default 27017 }}

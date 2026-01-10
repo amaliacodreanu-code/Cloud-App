@@ -6,11 +6,16 @@ from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token
 from hashlib import sha256
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv()
 
 app = Flask(__name__)
-
+CORS(
+    app,
+    resources={r"/*": {"origins": ["http://localhost:30080", "http://127.0.0.1:30080"]}},
+    supports_credentials=False
+)
 secret_key_file = '/app/secret_key.txt'
 with open(secret_key_file, 'r') as file:
     secret_key = file.read().strip()

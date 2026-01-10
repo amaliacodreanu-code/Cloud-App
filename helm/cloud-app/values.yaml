@@ -6,12 +6,17 @@ frontend:
 auth:
   image: auth
   port: 5000
+  nodePort: 30084
   dbApiUrl: "http://data-layer-api:5000"
+
 
 backend:
   image: backend
   port: 5000
-  dbApiUrl: "http://data-layer-api:5000"
+  nodePort: 30085
+  mongoUrl: "mongodb://database:27017"
+  dbName: "cloud_app"
+
 
 mongo:
   image: mongo:6

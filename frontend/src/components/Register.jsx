@@ -14,39 +14,31 @@ const Register = () => {
   const navigate = useNavigate();
   const apiUrl = window.__ENV__["VITE_AUTH_URL"];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
 
-    const inputs = document.querySelectorAll("input");
-    let isValid = true;
-
-    inputs.forEach((input) => {
-      if (input.type !== "submit" && input.value.trim() === "") {
-        setError("Te rog completează câmpul: " + input.id + ".");
-        isValid = false;
-        input.focus();
-        return false;
-      }
+  try {
+    const response = await fetch(`${apiUrl}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
     });
 
-    if (!isValid) return;
+    const data = await response.json().catch(() => ({}));
 
-    try {
-      const response = await fetch(`${apiUrl}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) throw new Error("Invalid username or password");
-
-      navigate("/login");
-    } catch (err) {
-      setError("Înregistrarea a eșuat. Verifică datele și încearcă din nou.");
-      console.error("Error registering:", err);
+    if (!response.ok) {
+      setError(data.message || "Înregistrarea a eșuat.");
+      return;
     }
-  };
+
+    // DOAR dacă backend-ul confirmă crearea userului
+    navigate("/login");
+  } catch (err) {
+    setError("Eroare de rețea. Încearcă din nou.");
+    console.error("Error registering:", err);
+  }
+};
 
   return (
     <div className="dr-auth">

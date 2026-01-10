@@ -14,22 +14,27 @@ spec:
     spec:
       containers:
         - name: backend
-          image: {{ .Values.backend.image | default "backend" }}
+          image: {{ .Values.backend.image }}
           imagePullPolicy: Never
           ports:
-            - containerPort: {{ .Values.backend.port | default 5000 }}
+            - containerPort: {{ .Values.backend.port }}
           env:
-            - name: DB_API_URL
-              value: {{ .Values.backend.dbApiUrl | quote }}
+            - name: MONGO_URL
+              value: {{ .Values.backend.mongoUrl | quote }}
+            - name: DB_NAME
+              value: {{ .Values.backend.dbName | quote }}
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend
 spec:
+  type: NodePort
   selector:
     app: backend
   ports:
-    - port: {{ .Values.backend.port | default 5000 }}
-      targetPort: {{ .Values.backend.port | default 5000 }}
-  type: ClusterIP
+    - name: http
+      port: {{ .Values.backend.port }}
+      targetPort: {{ .Values.backend.port }}
+      nodePort: {{ .Values.backend.nodePort }}

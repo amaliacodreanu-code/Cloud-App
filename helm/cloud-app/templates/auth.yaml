@@ -14,22 +14,25 @@ spec:
     spec:
       containers:
         - name: auth
-          image: {{ .Values.auth.image | default "auth" }}
+          image: {{ .Values.auth.image }}
           imagePullPolicy: Never
           ports:
-            - containerPort: {{ .Values.auth.port | default 5000 }}
+            - containerPort: {{ .Values.auth.port }}
           env:
             - name: DB_API_URL
               value: {{ .Values.auth.dbApiUrl | quote }}
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: auth
 spec:
+  type: NodePort
   selector:
     app: auth
   ports:
-    - port: {{ .Values.auth.port | default 5000 }}
-      targetPort: {{ .Values.auth.port | default 5000 }}
-  type: ClusterIP
+    - name: http
+      port: {{ .Values.auth.port }}
+      targetPort: {{ .Values.auth.port }}
+      nodePort: {{ .Values.auth.nodePort }}
